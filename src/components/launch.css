@@ -1,0 +1,135 @@
+@media (max-width:700px) and (min-width:350px) {
+
+    .card {
+        font-size: 95%;
+        width: 40%;
+
+    }
+
+    * {
+        font-size: 90%;
+    }
+
+}
+
+@media (max-width:350px) {
+    .card {
+        width: 90%;
+        font-size: 95%;
+    }
+
+    * {
+        font-size: 90%;
+    }
+}
+
+@media (min-width:700px) {
+    .card {
+        font-size: 95%;
+        width: 20%;
+    }
+
+}
+
+#root {
+    /* background-image: url('https://as2.ftcdn.net/v2/jpg/04/24/30/93/1000_F_424309320_UkOxg2z3sq7yXwGnWCO6xBXkRI4byhnI.jpg'); */
+    /* background-image: url('https://as1.ftcdn.net/v2/jpg/04/76/50/06/1000_F_476500682_NWyLZJi0KHSYcaAZyXMwRLsUI2MRC6tC.jpg'); */
+    /* background-image: url('https://cdn.vectorstock.com/i/1000x1000/56/18/abstract-medical-background-vector-18935618.webp'); */
+    background-repeat: none;
+    /* background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhuN78ZKYKM2ZCcDfB4c49eV-JggEVJE5vfg&usqp=CAU'); */
+    background-image: url('https://wallpaperaccess.com/full/449937.jpg');
+
+    /* background-image: url('https://wallpaper-mania.com/wp-content/uploads/2018/09/High_resolution_wallpaper_background_ID_77701451233.jpg'); */
+    /* background-image: url('https://e0.pxfuel.com/wallpapers/641/359/desktop-wallpaper-doctor-stethoscope-heart-cardiologist.jpg'); */
+    background-size: 100vw;
+    /* background-blend-mode: color-burn; */
+    background-attachment: fixed;
+    /* background-color: rgb(202, 255, 246); */
+}
+
+
+
+.main-nav {
+    /* background-image:url('https://wallpaperaccess.com/full/449937.jpg'); */
+    background-color: rgba(158, 240, 255, 1);
+
+    /* background-image: url('https://wallpaper-mania.com/wp-content/uploads/2018/09/High_resolution_wallpaper_background_ID_77701451233.jpg'); */
+}
+
+.tile {
+    background-color: transperent;
+}
+
+
+
+.youtube .fa:hover {
+    color: rgb(238, 43, 43);
+}
+
+.twitter .fa:hover {
+    color: rgb(30, 188, 250);
+}
+
+.facebook .fa:hover {
+    color: rgb(57, 57, 240);
+}
+
+.instagram .fa:hover {
+    color: rgb(238, 82, 108);
+}
+
+.telegram .fa:hover {
+    color: aqua;
+}
+
+.linkedin .fa:hover {
+    color: rgb(44, 23, 233);
+}
+
+.service-card {
+    border-top-right-radius: 25%;
+    border-bottom-left-radius: 25%;
+    padding-bottom: 3rem;
+}
+
+.service-card:hover {
+    animation-name: card-ani;
+    animation-duration:01s;
+    animation-iteration-count: 1;
+}
+
+@keyframes card-ani {
+
+/* change it to border scolor and widthborder
+border-right-top:2px solid red; */
+
+    0% {box-shadow: 0px 10px 5px 0px rgba(245,247,247,0.98);
+        -webkit-box-shadow: 0px 10px 5px 0px rgba(245,247,247,0.98);
+        -moz-box-shadow: 0px 10px 5px 0px rgba(245,247,247,0.98);
+
+    }
+
+    25% {box-shadow: 5px 0px 5px 0px rgba(121,189,189,1);
+        -webkit-box-shadow: 5px 0px 5px 0px rgba(121,189,189,1);
+        -moz-box-shadow: 5px 0px 5px 0px rgba(121,189,189,1);
+
+    }
+
+    50% {box-shadow: 0px -10px 5px 0px rgba(58,224,224,1);
+        -webkit-box-shadow: 0px -10px 5px 0px rgba(58,224,224,1);
+        -moz-box-shadow: 0px -10px 5px 0px rgba(58,224,224,1);
+
+    }
+
+ 75%{box-shadow: -5px 0px 5px 0px rgba(10,247,247,1);
+    -webkit-box-shadow: -5px 0px 5px 0px rgba(10,247,247,1);
+    -moz-box-shadow: -5px 0px 5px 0px rgba(10,247,247,1);
+
+ }
+ 99%{
+    box-shadow: 0px 10px 5px 0px rgba(245,247,247,0.98);
+        -webkit-box-shadow: 0px 10px 5px 0px rgba(245,247,247,0.98);
+        -moz-box-shadow: 0px 10px 5px 0px rgba(245,247,247,0.98);
+ }
+
+}
