@@ -20,7 +20,7 @@ const Home = (props) => {
 
     const [Excelldata, SetExcelldata] = useState([]);
     const [Specialistdata, SetSpecialistdata] = useState([]);
-
+    const {loading,setLoading}=useState(true);
     /*
     useEffect hook used to fetch the data of specialists and excellence
     from the api = base path+"/api/get-data/home-data" using the homeData function
@@ -35,8 +35,9 @@ const Home = (props) => {
     */
     const setProgress = props.setProgress;
 
-    const baseurl=props.baseurl;
-    const url = `${baseurl}api/get-data/home-data`;
+    // const baseurl=props.baseurl;
+// `${baseurl}api/get-data/home-data`||
+    const url = "http://localhost:5000/api/get-data/home-data";
 
     useEffect(() => {
         const homeData = async (url) => {
@@ -51,7 +52,7 @@ const Home = (props) => {
                 SetSpecialistdata(data.data.specialistData);
 
                 setProgress(100);
-
+                setLoading(false);
             }
             catch (err) {
                 setProgress(0);
@@ -64,7 +65,7 @@ const Home = (props) => {
         return () => {
             console.log('data recieved');
         }
-    }, [url, setProgress]);
+    }, [url, setProgress,setLoading]);
 
 
 
@@ -80,10 +81,10 @@ const Home = (props) => {
             </div>
             <div className="hero " style={{ flexWrap: 'wrap' }}>
                 <div className="hero-body is-transperent is-flex is-justify-content-center  is-flex-wrap-wrap card-box	 ">
-                    <Card key="appointment" query=' Book Doctor Appointment' icon has-text-grey-lighter is-hoverable='' image='https://img.freepik.com/premium-vector/personal-doctor-appointment-2d-vector-isolated-illustration-visit-professional-health-facility-flat-characters-cartoon-background-getting-treatment-plan-symptoms-conditions-colourful-scene_151150-5797.jpg?w=740' />
-                    <Card key='doctor' query='Get your Doctor ' icon has-text-grey-lighter is-hoverable='' image='https://www.shutterstock.com/image-vector/doctor-stethoscope-on-laptop-screen-260nw-1892457136.jpg' />
-                    <Card key='health' query='Health Checkup' icon has-text-grey-lighter is-hoverable='' image='https://img.freepik.com/premium-vector/man-see-doctor-check-himself_134553-253.jpg?w=740' />
-                    <Card key='report' query=' Medical Reports ' icon has-text-grey-lighter is-hoverable='' image='https://media.istockphoto.com/id/497452643/vector/doctor-showing-a-medical-report.jpg?s=612x612&w=is&k=20&c=ZnB3evSrHk7tCM_BEBNNoxXTGkny1LS-MjpzbdlUWKA=' />
+                    <Card key="appointment" query=' Book Doctor Appointment' icon has-text-grey-lighter is-hoverable='' image='https://img.freepik.com/premium-vector/personal-doctor-appointment-2d-vector-isolated-illustration-visit-professional-health-facility-flat-characters-cartoon-background-getting-treatment-plan-symptoms-conditions-colourful-scene_151150-5797.jpg?w=740' url="/book-an-appointment" />
+                    <Card key='doctor' query='Get your Doctor ' icon has-text-grey-lighter is-hoverable='' image='https://www.shutterstock.com/image-vector/doctor-stethoscope-on-laptop-screen-260nw-1892457136.jpg' url="get-doctor" />
+                    <Card key='health' query='Health Checkup' icon has-text-grey-lighter is-hoverable='' image='https://img.freepik.com/premium-vector/man-see-doctor-check-himself_134553-253.jpg?w=740' url='health-checkup'/>
+                    <Card key='report' query=' Medical Reports ' icon has-text-grey-lighter is-hoverable='' image='https://media.istockphoto.com/id/497452643/vector/doctor-showing-a-medical-report.jpg?s=612x612&w=is&k=20&c=ZnB3evSrHk7tCM_BEBNNoxXTGkny1LS-MjpzbdlUWKA=' url='medical-reports' />
 
                 </div>
             </div>
@@ -99,10 +100,10 @@ const Home = (props) => {
                 </div>
                 <div className="hero-body mb-0 pb-0 is-flex is-justify-content-space-evenly is-flex-wrap-wrap ">
 
-                    {Excelldata.length === 0 && <img className="image " alt="_blank" style={{ width: "10vw" }} src={Loader} />}
+                    {!loading && <img className="image " alt="_blank" style={{ width: "10vw" }} src={Loader} />}
                     {
 
-                        Excelldata.length !== 0 && Excelldata.map((ele) => {
+                        (loading) && Excelldata.map((ele) => {
                             return (
                                 <ExcelllCard image={ele.imageUrl} url={ele.url} key={ele.description} speciality={ele.speciality} description={ele.description} />
                             )
@@ -125,11 +126,11 @@ const Home = (props) => {
 
 
                 <div className="hero-body mb-0  pt-1 pb-0 is-flex is-justify-content-space-evenly is-flex-wrap-wrap ">
-                    {Specialistdata.length === 0 && <img className="image " alt="_blank" style={{ width: "10vw" }} src={Loader} />}
+                {!loading && <img className="image " alt="_blank" style={{ width: "10vw" }} src={Loader} />}
 
                     {
 
-                        Specialistdata.length !== 0 && Specialistdata.filter((ele, idx) => idx < 8).map((ele) => {
+                        (loading) && Specialistdata.filter((ele, idx) => idx < 8).map((ele) => {
                             return (
                                 <Specialist key={ele.name} gender={ele.gender} name={ele.name} qualification={ele.qualification} />
                             )

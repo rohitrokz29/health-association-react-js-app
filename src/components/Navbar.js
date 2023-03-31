@@ -22,7 +22,10 @@ return(
         <div className="navbar-end  " >
 
       {/* button t create an Appointment*/}
-          <button className="navbar-item mx-3  button is-danger mt-1   ">Book an Appointment</button>
+      <div className="navbar-item is-danger">
+      <Link to="/book-an-appointment" className="is-danger n mx-3  button  mt-1   ">Book an Appointment</Link>
+
+      </div>
         </div>
 
     </nav>
@@ -120,44 +123,44 @@ return(
                   <div className="dropdown-item columns">
                     <div className="column menu">
                       <div className="menu-list">
-                        <Link to="/posi">Mumbai</Link>
+                        <Link to="/posi/Mumbai">Mumbai</Link>
                       </div>
 
                       <div className="menu-list">
-                        <Link to="/posi">Indore</Link>
+                        <Link to="/posi/Indore">Indore</Link>
                       </div>
                       <div className="menu-list">
-                        <Link to="/posi">Jaipur</Link>
+                        <Link to="/posi/Jaipur">Jaipur</Link>
                       </div>
                     </div>
                     <div className="column menu">
                       <div className="menu-list">
-                        <Link to="/posi">Delhi</Link>
+                        <Link to="/posi/Delhi">Delhi</Link>
                       </div>
 
                       <div className="menu-list">
-                        <Link to="/posi">Kolkata</Link>
+                        <Link to="/posi/Kolkata">Kolkata</Link>
                       </div>
                       <div className="menu-list">
-                        <Link to="/posi">Banglore</Link>
+                        <Link to="/posi/Banglore">Banglore</Link>
                       </div>
                     </div>
                     <div className="column menu">
                       <div className="menu-list">
-                        <Link to="/posi">Manipur</Link>
+                        <Link to="/posi/Manipur">Manipur</Link>
                       </div>
 
                       <div className="menu-list">
-                        <Link to="/posi">Hyderabad</Link>
+                        <Link to="/posi/Hyderabad">Hyderabad</Link>
                       </div>
                       <div className="menu-list">
-                        <Link to="/posi">GandhiNagar</Link>
+                        <Link to="/posi/GandhiNagar">GandhiNagar</Link>
                       </div>
                     </div>
 
                   </div>
                   <div className="dropdown-item is-flex is-flex-direction-row is-justify-content-center ">
-                    <Link className=' button is-rounded has-background-grey-lighter  has-shadow' to="/posi">View All</Link>
+                    <Link className=' button is-rounded has-background-grey-lighter  has-shadow' to="/posi/all">View All</Link>
                   </div>
 
                 </div>

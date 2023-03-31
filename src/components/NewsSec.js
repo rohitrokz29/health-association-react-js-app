@@ -22,7 +22,6 @@ const NewsSec = (props) => {
     useEffect(() => {
 
           const fetchData = async () => {
-              // const    NEWS_URL="https://newsapi.org/v2/top-headlines?category=health&country=us&country=in&apiKey=29fb794937ba45b39ba01b6b9f24cb87&pagesize=5";
               const url = props.NEWS_URL;
               const data = await fetch(url);
               const parsedData = await data.json();
@@ -61,7 +60,9 @@ const NewsSec = (props) => {
             button to see more news
             */}
             <div className="dropdown-item is-centered ">
-                <button className="button is-rounded is-centered  has-background-grey-lighter  ">See More</button>
+            <Link to="/news">
+                <div className="button is-rounded is-centered  has-background-grey-lighter  ">See More</div>
+                </Link>
             </div>
         </>
     )

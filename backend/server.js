@@ -9,13 +9,15 @@ require('dotenv').config();
 
 
 
+
 const PORT=process.env.PORT || 5000;
+const uri = process.env.uri ;
 
 app.use(cors())
 app.use(express.urlencoded( {extended:false}));
 app.use(express.json());
 
-ConnectToMongo();
+ConnectToMongo(uri);
 
 //declaring methods
 

@@ -26,7 +26,7 @@ const JoinUs = (props) => {
                     </div>
                     <div className="field mt-4" style={{ width: "30vw" }}>
                         <div className="control has-icons-left has-icons-right">
-                            <input className="input is-success   " type="text" placeholder="Email" />
+                            <input className="input is-success   " type="email" placeholder="Email" />
                             <span className="icon is-small is-left">
                                 <i className="fa fa-envelope"></i>
                             </span>
@@ -34,7 +34,7 @@ const JoinUs = (props) => {
                     </div>
                     <div className="field mt-4" style={{ width: "30vw" }}>
                         <div className="control has-icons-left has-icons-right">
-                            <input className="input is-success   " type="text" placeholder="Phone Number" />
+                            <input className="input is-success   " type="text" placeholder="ContactNumber" />
                             <span className="icon is-small is-left">
                                 <i className="fa fa-phone"></i>
                             </span>
@@ -43,11 +43,11 @@ const JoinUs = (props) => {
                     <div className="field mt-4" style={{ width: "30vw" }}>
                         <div className="control">
                             <div className="select">
-                                <select style={{ width: "30vw" }}>
 
-                                    <span className="icon is-small is-left">
-                                        <i className="fa fa-handshake-o"></i>
-                                    </span>
+                            <select style={{ width: "30vw" }}>
+                            <span className="icon is-small is-left">
+                                <i className="fa fa-handshake-o"></i>
+                            </span>
                                     <option>{id}</option>
                                     {
 
@@ -86,13 +86,18 @@ const JoinUs = (props) => {
   <div className="control is-size-6">
     <label className="checkbox has-text-black ">
       <input type="checkbox" />
-      I agree that details provided above are correct
+      &nbsp;I agree that details provided above are correct
     </label>
+
   </div>
+  <div className="field mt-4 pb-0 mt-0 is-centered">
+<strong className="has-text-black">We will be Contacting you within 48 hours on Email provided </strong>
+  </div>
+
 </div>
 <div className="field mt-4 pb-0 mt-0 is-centered">
   <div className="control is-flex is-justify-content-center">
-    <button className="button is-link is-dark">Submit</button>
+    <button className="button is-link is-dark">Submit Details</button>
   </div>
   </div>
 

@@ -32,28 +32,20 @@
 }
 
 #root {
-    /* background-image: url('https://as2.ftcdn.net/v2/jpg/04/24/30/93/1000_F_424309320_UkOxg2z3sq7yXwGnWCO6xBXkRI4byhnI.jpg'); */
-    /* background-image: url('https://as1.ftcdn.net/v2/jpg/04/76/50/06/1000_F_476500682_NWyLZJi0KHSYcaAZyXMwRLsUI2MRC6tC.jpg'); */
-    /* background-image: url('https://cdn.vectorstock.com/i/1000x1000/56/18/abstract-medical-background-vector-18935618.webp'); */
-    background-repeat: none;
-    /* background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhuN78ZKYKM2ZCcDfB4c49eV-JggEVJE5vfg&usqp=CAU'); */
+    background-repeat: no-repeat;
     background-image: url('https://wallpaperaccess.com/full/449937.jpg');
-
-    /* background-image: url('https://wallpaper-mania.com/wp-content/uploads/2018/09/High_resolution_wallpaper_background_ID_77701451233.jpg'); */
-    /* background-image: url('https://e0.pxfuel.com/wallpapers/641/359/desktop-wallpaper-doctor-stethoscope-heart-cardiologist.jpg'); */
-    background-size: 100vw;
-    /* background-blend-mode: color-burn; */
     background-attachment: fixed;
-    /* background-color: rgb(202, 255, 246); */
-}
+    background-position: center center;
+
+    background-size: cover;
+
+  }
 
 
 
 .main-nav {
-    /* background-image:url('https://wallpaperaccess.com/full/449937.jpg'); */
     background-color: rgba(158, 240, 255, 1);
 
-    /* background-image: url('https://wallpaper-mania.com/wp-content/uploads/2018/09/High_resolution_wallpaper_background_ID_77701451233.jpg'); */
 }
 
 .tile {

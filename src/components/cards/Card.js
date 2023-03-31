@@ -5,7 +5,7 @@ const Card = (props) => {
   return (
         <div className="card service-card  has-background-warning  is-hoverable mx-4 my-2 mt-2" >
             <div className="card-header" style={{height:'12vh'}}>
-                <Link to="/" className="card-header-title has-text-black is-centered">{props.query}</Link>
+                <Link to={props.url} className="card-header-title has-text-black is-centered">{props.query}</Link>
             </div>
             <div className="card-content is-centered p-2">
                     <div className="image ">

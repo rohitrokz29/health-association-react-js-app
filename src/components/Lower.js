@@ -91,6 +91,12 @@ if(true){
                         <div className="subtitle has-text-warning">
                             Centeres of Excellence
                         </div>
+
+                        <div className="container is-flex is-flex-direction-column">
+                            <Link to="/" className="has-text-white">1</Link>
+                            <Link to="/" className="has-text-white">2</Link>
+                            <Link to="/" className="has-text-white">3</Link>
+                        </div>
                       </div>
                     <div className="box has-background-dark has-text-white">
                         <div className="subtitle has-text-warning">

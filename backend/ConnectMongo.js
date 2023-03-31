@@ -4,14 +4,13 @@ require('dotenv').config()
 
 
 //Get Database uri connection as env variable
-const uri = process.env.uri;
 
 
 /*
     Connecting to Database using ConnectToMongo function which always try to estab
     lish a connection on error also/
 */
-const ConnectToMongo = async () => {
+const ConnectToMongo = async (uri) => {
     mongoose.connect(uri,{
         useNewUrlParser:true,
         // useCreateIndex:true,
