@@ -1,23 +1,32 @@
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
 import {Link} from 'react-router-dom';
+import Location from './cards/Location';
 import Loader from './images/load.gif';
 import axios from "axios";
 
-const Center =()=>{
-const [loading,SetLoading]=useState(true);
+const Center =({baseurl})=>{
+    
+    /*
+    -- variable loading  is being used to have a look wheather data is fetched or not from axios get request which is set true                     for default and set to false when data is fetched
+    -- variable centers is being used to save the location data of centers fetched through axios get request 
+     */
+const [loading,setLoading]=useState(true);
+const [centers,setCenters]=useState([]);
+
+useEffect(
+    async ()=>{
+        
+        const data=await axios.get((baseurl+"api/get-data/get-location").toString())
+        setCenters(data.data.centers)
+        setLoading(false);
+        return (()=>{
+            console.log(centers)
+        })
+    }
+)
 
 
-
-const centers=[
-  {
-    location:"Mumbai",
-    place:"Dhule"
-  },
-  {
-    location:"Delhi",
-    place:"NCR"
-  }
-];
+// const centers=[{location:"Mumbai",place:"Dhule",url:"/posi/all"},{location:"Mumbai",place:"Dhule",url:"/posi/all"},{location:"Mumbai",place:"Dhule",url:"/posi/all"},{location:"Mumbai",place:"Dhule",url:"/posi/all"},{location:"Delhi",place:"NCR",url:"/posi/all"}];
 
   return (
       <section style={{
@@ -29,27 +38,22 @@ const centers=[
                         <strong className='has-text-black is-size-3 is-underlined'>Health </strong>
                         <strong className='has-text-black  is-size-3 is-underlined'>Centers</strong>
                     </div>
- {loading && <div className="is-flex is-justify-content-center is-align-items-center" style={{height:'100vh'}}>
+        {loading && <div className="is-flex is-justify-content-center is-align-items-center m-0 p-0" style={{height:'70vh'}}>
             <img className="image" alt="Loading..." src={Loader}  style={{height:"12rem",width:"12rem" ,fontSize:"3rem",}}/>
             </div>}
                     {
                         
-                      centers.map((ele)=>{
-                        return(
+                /*
+                 Location Component shows the card of location- data of location is fetched from axios get request from database 
+                 --which on click are directed to a url to see the location on google maps
+                */
+                        
+                        
+               !loading && centers.map((ele)=>{
+                return(
 
-                            <div key={ele.place} to={ele.url} className="container location-box box is-hoverable is-size-4 has-text-centered is-flex is-flex-direction-row is-align-items-center is-justify-content-center">
-                                  <div className="has-text-grey-darker		has-text-weight-semibold	">
-                                    {ele.location}
-                                  </div>
-                                  <div className="icon is-size-1 has-text-dark m-4">
-                                  <i className="fa fa-angle-right"></i>
-                                  <i className="fa fa-angle-right"></i>
-                                </div>
-
-                                <div className="has-text-grey-darker has-text-weight-semibold	">
-                                  {ele.place}
-                                </div>
-                          </div>
+                    <Location url={ele.url} location={ele.location} place={ele.place} key={ele.url} />
+                        
                         )
                       })
                     }

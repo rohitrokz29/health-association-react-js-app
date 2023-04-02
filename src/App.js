@@ -40,7 +40,7 @@ const NEWS_URL=process.env.NEWS_URL;
 
           <Route key="appointment" exact path="/book-an-appointment" element={<Appointment/>}  />
 
-          <Route key='centers' exact path="/posi/:id" element={<Center/>}/>
+          <Route key='centers' exact path="/posi/:id" baseurl={baseurl} element={<Center/>}/>
 
           {    // in the <Speciality/> commponent ":id " is the speciality type passed in page link url
           }

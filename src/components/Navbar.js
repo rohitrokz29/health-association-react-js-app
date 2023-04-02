@@ -1,4 +1,4 @@
-  import React from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import logo from './images/logo.png';
 import NewsSec from './NewsSec';
@@ -21,7 +21,7 @@ return(
         </div>
         <div className="navbar-end  " >
 
-      {/* button t create an Appointment*/}
+      {/* button to create an Appointment*/}
       <div className="navbar-item is-danger">
       <Link to="/book-an-appointment" className="is-danger n mx-3  button  mt-1   ">Book an Appointment</Link>
 

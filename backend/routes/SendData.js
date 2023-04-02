@@ -1,7 +1,16 @@
 const express=require('express');
-const sendRouter=express.Router();
 
 const Subscribtions=require('../models/Subscribtions');
+
+/*
+ Declaring below thr express router for post requests to put data into database named "sendRouter"
+ */
+
+const sendRouter=express.Router();
+
+/*
+ post request for adding subscription  
+ */
 
 sendRouter.post('/subscribtion',(req,res)=>{
   const subscriber={name:req.body.name,
