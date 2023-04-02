@@ -125,3 +125,19 @@ border-right-top:2px solid red; */
  }
 
 }
+
+.location-box{
+  width:60vw;
+  border-radius:2rem;
+  border-color:transparent;
+}
+.location-box:hover{
+  
+box-shadow: 8px 9px 100px 0px rgba(7, 241, 251, 1);
+    
+}
+
+
+
+
+

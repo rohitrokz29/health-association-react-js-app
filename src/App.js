@@ -7,7 +7,7 @@ import JoinUs from './components/forms/JoinUs';
 import Home from './components/Home';
 import Navbar from './components/Navbar';
 import Speciality from './components/Specialities/Speciality'
-import Centers from './components/Centers'
+import Center from './components/Center'
 import Appointment from './components/forms/Appointment';
 
 
@@ -40,7 +40,7 @@ const NEWS_URL=process.env.NEWS_URL;
 
           <Route key="appointment" exact path="/book-an-appointment" element={<Appointment/>}  />
 
-          <Route key='centers' exact path="/posi/:id" elament={<Centers/>}/>
+          <Route key='centers' exact path="/posi/:id" element={<Center/>}/>
 
           {    // in the <Speciality/> commponent ":id " is the speciality type passed in page link url
           }
