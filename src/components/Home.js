@@ -43,8 +43,8 @@ const Home = (props) => {
         const homeData = async (url) => {
             try {
                 setProgress(10);
-                const data = await axios.get(url);
-
+                // const data = await axios.get(url);
+                const data={}
                 setProgress(54);
                 console.log(data);
 
@@ -57,7 +57,7 @@ const Home = (props) => {
             catch (err) {
                 setProgress(0);
                 console.log(err);
-                homeData(url);
+                // homeData(url);
             }
         }
         homeData(url)

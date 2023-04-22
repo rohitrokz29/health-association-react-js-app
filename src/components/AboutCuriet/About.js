@@ -13,7 +13,7 @@ const About = () => {
         <>
             <section style={{
                 backgroundColor: 'rgb(0,0 , 0,0.1)'
-            }} className="container is-centered mt-6 pb-6 ">
+            }} className="container is-centered mt-6 pb-6 border border-info ">
 
                 <div className="container subtitle has-text-centered is-centered mb-2 pb-3 ">
                     <strong className='has-text-black is-size-3 is-underlined'>Cureit  </strong>

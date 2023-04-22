@@ -9,7 +9,7 @@ import Navbar from './components/Navbar';
 import Speciality from './components/Specialities/Speciality'
 import Center from './components/Center'
 import Appointment from './components/forms/Appointment';
-
+import News from './components/News';
 
 function App() {
 
@@ -40,7 +40,7 @@ const NEWS_URL=process.env.NEWS_URL;
 
           <Route key="appointment" exact path="/book-an-appointment" element={<Appointment/>}  />
 
-          <Route key='centers' exact path="/posi/:id" baseurl={baseurl} element={<Center/>}/>
+          <Route key='centers' exact path="/posi/:id"  element={<Center baseurl={baseurl}/>}/>
 
           {    // in the <Speciality/> commponent ":id " is the speciality type passed in page link url
           }
@@ -48,7 +48,8 @@ const NEWS_URL=process.env.NEWS_URL;
 
           <Route key="speciality" path="/speciality/:id" element={<Speciality  />}/>
 
-          <Route key="join" path="/join/:id" element={<JoinUs/>} />
+          <Route key="join" path="/join/:id" element={<JoinUs baseurl={baseurl}/>} />
+          <Route key="news" exact path="/news" elament={<News/>} />
         </Routes>
       </BrowserRouter>
   );

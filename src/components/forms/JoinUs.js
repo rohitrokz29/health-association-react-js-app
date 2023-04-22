@@ -1,8 +1,32 @@
-import React from "react";
+import React, { useId, useState } from "react";
 import { useParams } from "react-router-dom";
+import axios from "axios";
 const JoinUs = (props) => {
     const { id } = useParams();
+    const [check, setCheck] = useState(false);
     const join_as = ["Specialist", "Nurse", "Therapist", "Physician", "Technologist", "Pharmacist"];
+    // const [new_data,setNew_data]=useState({name:"",email:"",phone:'',profession:"",education:"",speciality:'',check:true});
+    const [new_data, setNew_data] = useState({ name: "", email: "", profession: id, speciality: "", education: "", phone: "", });
+    const joinUS =  (e) => {
+        e.preventDefault();
+
+        if (!check) {
+            document.querySelector("#message").innerHTML = "Please check in the box "
+        }
+        else {
+            if (new_data.name === "" || new_data.email === "" || new_data.phone === "" || new_data.education === "", new_data.speciality === "") {
+                document.querySelector("#message").innerHTML = "Please enter correct details"
+            }
+            else {
+                axios.post((props.baseurl + "location").toString(), JSON.stringify(new_data)
+                ).then(res => res.json()).catch(err => console.log(err));
+                console.log(JSON.stringify(new_data));
+
+            }
+        }
+
+    }
+
     return (
         <section style={{
             backgroundColor: 'rgb(0,0 , 0,0.1)',
@@ -15,10 +39,10 @@ const JoinUs = (props) => {
                 <strong className='has-text-black  is-size-3 is-underlined'>Association </strong>
             </div>
             <div className=" columns is-centered pb-6">
-                <div className="column  is-one-third">
+                <form onSubmit={joinUS} className="column  is-one-third">
                     <div className="field mt-4 is-centered" style={{ width: "30vw" }}>
                         <div className="control has-icons-left has-icons-right">
-                            <input className="input is-success   " type="text" placeholder="Name" />
+                            <input className="input is-success   " type="text" name="name" value={new_data.name} onChange={(e) => { setNew_data({ ...new_data, name: e.target.value }) }} placeholder="Name" />
                             <span className="icon is-small is-left">
                                 <i className="fa fa-user"></i>
                             </span>
@@ -26,7 +50,7 @@ const JoinUs = (props) => {
                     </div>
                     <div className="field mt-4" style={{ width: "30vw" }}>
                         <div className="control has-icons-left has-icons-right">
-                            <input className="input is-success   " type="email" placeholder="Email" />
+                            <input className="input is-success   " type="email" name="email" value={new_data.email} onChange={(e) => { setNew_data({ ...new_data, email: e.target.value }) }} placeholder="Email" />
                             <span className="icon is-small is-left">
                                 <i className="fa fa-envelope"></i>
                             </span>
@@ -34,7 +58,7 @@ const JoinUs = (props) => {
                     </div>
                     <div className="field mt-4" style={{ width: "30vw" }}>
                         <div className="control has-icons-left has-icons-right">
-                            <input className="input is-success   " type="text" placeholder="ContactNumber" />
+                            <input className="input is-success   " type="text" name="phone" value={new_data.phone} onChange={(e) => { setNew_data({ ...new_data, phone: e.target.value }) }} placeholder="ContactNumber" />
                             <span className="icon is-small is-left">
                                 <i className="fa fa-phone"></i>
                             </span>
@@ -44,11 +68,11 @@ const JoinUs = (props) => {
                         <div className="control">
                             <div className="select">
 
-                            <select style={{ width: "30vw" }}>
-                            <span className="icon is-small is-left">
-                                <i className="fa fa-handshake-o"></i>
-                            </span>
-                                    <option>{id}</option>
+                                <select style={{ width: "30vw" }} value={new_data.profession} onChange={(e) => { setNew_data({ ...new_data, profession: e.target.value }) }} name="profession">
+                                    {/* <figure className="icon is-small is-left">
+                                        <i className="fa fa-handshake-o"></i>
+                                    </figure> */}
+                                    <option value={id}>{id}</option>
                                     {
 
                                         join_as.filter((ele) => {
@@ -59,7 +83,7 @@ const JoinUs = (props) => {
 
                                         }).map((ele) => {
                                             return (
-                                                <option>{ele}</option>
+                                                <option key={ele} value={ele}>{ele}</option>
                                             )
                                         })
                                     }
@@ -69,7 +93,7 @@ const JoinUs = (props) => {
                     </div>
                     <div className="field mt-4" style={{ width: "30vw" }}>
                         <div className="control has-icons-left has-icons-right">
-                            <input className="input is-success   " type="text" placeholder="Speciality Type" />
+                            <input className="input is-success   " type="text" name="speciality" value={new_data.speciality} onChange={(e) => { setNew_data({ ...new_data, speciality: e.target.value }) }} placeholder="Speciality Type" />
                             <span className="icon is-small is-left">
                                 <i className="fa fa-plus"></i>
                             </span>
@@ -78,32 +102,42 @@ const JoinUs = (props) => {
                     <div className="field mt-4" style={{ width: "30vw" }}>
                         <div className="control has-icons-left has-icons-right has-text-black">
                             Educational Details in One File Below:
-                            <input className="input is-success   " type="file"  />
+                            <input className="input is-success   " name="education" value={new_data.education} onChange={(e) => { setNew_data({ ...new_data, education: e.target.value }) }} type="file" />
 
                         </div>
                     </div>
                     <div className="field mt-4">
-  <div className="control is-size-6">
-    <label className="checkbox has-text-black ">
-      <input type="checkbox" />
-      &nbsp;I agree that details provided above are correct
-    </label>
+                        <div className="control is-size-6">
+                            <label className="checkbox has-text-black ">
+                                <input type="checkbox" name="check" onClick={() => { setCheck(check ? false : true) }} />
+                                &nbsp;I agree that details provided above are correct
+                            </label>
 
-  </div>
-  <div className="field mt-4 pb-0 mt-0 is-centered">
-<strong className="has-text-black">We will be Contacting you within 48 hours on Email provided </strong>
-  </div>
+                        </div>
+                        <div className="field mt-4 pb-0 mt-0 is-centered">
+                            <strong className="has-text-black">We will be Contacting you within 48 hours on Email provided </strong>
+                        </div>
 
-</div>
-<div className="field mt-4 pb-0 mt-0 is-centered">
-  <div className="control is-flex is-justify-content-center">
-    <button className="button is-link is-dark">Submit Details</button>
-  </div>
-  </div>
+                    </div>
+
+                    <div className=" mt-4">
+                        <div className=" is-size-6">
+                            <div className=" has-text-danger-dark " id="message">
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                    <div className="field mt-4 pb-0 mt-0 is-centered">
+                        <div className="control is-flex is-justify-content-center">
+                            <button className="button is-link is-dark" type="submit">Submit Details</button>
+                        </div>
+                    </div>
 
 
 
-                </div>
+                </form>
             </div>
 
         </section>
