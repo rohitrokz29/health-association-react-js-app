@@ -24,6 +24,7 @@ function App() {
 
 const NEWS_URL=process.env.NEWS_URL;
 
+
     return (
       <BrowserRouter>
         <Navbar NEWS_URL={NEWS_URL}    />
@@ -38,7 +39,7 @@ const NEWS_URL=process.env.NEWS_URL;
 
           <Route key="about" exact path="/about" element={<About />} />
 
-          <Route key="appointment" exact path="/book-an-appointment" element={<Appointment/>}  />
+          <Route key="appointment" exact path="/book-an-appointment" element={<Appointment baseurl={baseurl}/>}  />
 
           <Route key='centers' exact path="/posi/:id"  element={<Center baseurl={baseurl}/>}/>
 
@@ -53,6 +54,6 @@ const NEWS_URL=process.env.NEWS_URL;
         </Routes>
       </BrowserRouter>
   );
-}
+}  	
 
 export default App;

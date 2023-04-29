@@ -29,3 +29,6 @@ const Location=({url,location,place})=>{
     )
 }
 export default Location;
+
+
+// here create a button on side and apply js such tjhate on click it opens  a box down and shows ainformation about it

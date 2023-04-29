@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState,useMemo  } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
@@ -39,34 +39,42 @@ const Home = (props) => {
 // `${baseurl}api/get-data/home-data`||
     const url = "http://localhost:5000/api/get-data/home-data";
 
-    useEffect(() => {
-        const homeData = async (url) => {
-            try {
-                setProgress(10);
-                // const data = await axios.get(url);
-                const data={}
-                setProgress(54);
-                console.log(data);
 
-                SetExcelldata(data.data.excellenceData);
-                SetSpecialistdata(data.data.specialistData);
+    const homeData = useCallback( async (url) => {
 
-                setProgress(100);
-                setLoading(false);
-            }
-            catch (err) {
-                setProgress(0);
-                console.log(err);
-                // homeData(url);
-            }
+        try {
+            setProgress(10);
+            const data = await axios.get(url);
+            setProgress(54);
+            console.log(data);
+
+            SetExcelldata(data.data.excellenceData);
+            SetSpecialistdata(data.data.specialistData);
+
+            setProgress(100);
+            setLoading(false);
         }
+        catch (err) {
+            setProgress(0);
+            console.log(err);
+            // homeData(url);
+        }
+        return data;
+    },[])
+
+    useEffect(() => {
+        
         homeData(url)
 
         return () => {
-            console.log('data recieved');
+            console.log("axios request ranned");
+
         }
     }, [url, setProgress,setLoading]);
 
+    const data=useMemo(()=>{
+        return homeData()
+    })
 
 
 

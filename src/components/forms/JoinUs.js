@@ -1,26 +1,38 @@
-import React, { useId, useState } from "react";
+import React, { useId, useState ,useEffect} from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 const JoinUs = (props) => {
-    const { id } = useParams();
     const [check, setCheck] = useState(false);
+    const { id } = useParams();
+
+  const [profession, setProfession] = useState(id);
+  useEffect(() => {
+      return () => {
+          setProfession(id)
+      };
+  }, [useParams()])
+
+
     const join_as = ["Specialist", "Nurse", "Therapist", "Physician", "Technologist", "Pharmacist"];
     // const [new_data,setNew_data]=useState({name:"",email:"",phone:'',profession:"",education:"",speciality:'',check:true});
-    const [new_data, setNew_data] = useState({ name: "", email: "", profession: id, speciality: "", education: "", phone: "", });
+    const [new_data, setNew_data] = useState({ name: "", email: "", profession: profession, speciality: "", education: "", phone: "", });
     const joinUS =  (e) => {
         e.preventDefault();
 
-        if (!check) {
-            document.querySelector("#message").innerHTML = "Please check in the box "
-        }
-        else {
-            if (new_data.name === "" || new_data.email === "" || new_data.phone === "" || new_data.education === "", new_data.speciality === "") {
+        if (new_data.name === "" || new_data.email === "" || new_data.phone === "" || new_data.education === "", new_data.speciality === "") {
                 document.querySelector("#message").innerHTML = "Please enter correct details"
             }
+        else {
+         
+            if (!check) {
+                document.querySelector("#message").innerHTML = "Please check in the box "
+                }
             else {
-                axios.post((props.baseurl + "location").toString(), JSON.stringify(new_data)
-                ).then(res => res.json()).catch(err => console.log(err));
-                console.log(JSON.stringify(new_data));
+                axios.post((props.baseurl + "location").toString(), JSON.stringify(new_data)).
+                then(res => res.json()).
+                catch(err =>{document.querySelector("#message").innerHTML = err;
+                            console.log(err);});
+                console.log((new_data));
 
             }
         }
@@ -58,7 +70,7 @@ const JoinUs = (props) => {
                     </div>
                     <div className="field mt-4" style={{ width: "30vw" }}>
                         <div className="control has-icons-left has-icons-right">
-                            <input className="input is-success   " type="text" name="phone" value={new_data.phone} onChange={(e) => { setNew_data({ ...new_data, phone: e.target.value }) }} placeholder="ContactNumber" />
+                            <input className="input is-success   " type="number" name="phone" value={new_data.phone} onChange={(e) => { setNew_data({ ...new_data, phone: e.target.value }) }} placeholder="ContactNumber" />
                             <span className="icon is-small is-left">
                                 <i className="fa fa-phone"></i>
                             </span>
@@ -102,7 +114,7 @@ const JoinUs = (props) => {
                     <div className="field mt-4" style={{ width: "30vw" }}>
                         <div className="control has-icons-left has-icons-right has-text-black">
                             Educational Details in One File Below:
-                            <input className="input is-success   " name="education" value={new_data.education} onChange={(e) => { setNew_data({ ...new_data, education: e.target.value }) }} type="file" />
+                            <input className="input is-success   " type="file" name="education" value={new_data.education} onChange={(e) => { setNew_data({ ...new_data, education: e.target.value }) }}  />
 
                         </div>
                     </div>
