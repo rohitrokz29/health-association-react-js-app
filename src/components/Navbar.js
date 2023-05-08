@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import logo from './images/logo.png';
 import NewsSec from './NewsSec';
 
-const Navbar = (props) => {
+const Navbar = ({NEWS_URL}) => {
 
 
 
@@ -11,12 +11,12 @@ const Navbar = (props) => {
     <>
 
       {/* Below is the top most nav-bar of page*/}
-      <nav className='navbar   ' style={{ backgroundColor: 'transparent' }}  >
+      <header className='navbar   ' style={{ backgroundColor: 'transparent' }}  >
         <div className=" navbar-brand mx-1 is-centered  ">
           <div className='navbar-item  image is-64x64 '>
             <img src={logo} alt="" />
           </div>
-          <div className='mx-1 is-size-4 navbar-item  has-text-black '>Cureit Health Association</div>
+          <div className='mx-1 navbar-item  asso-name has-text-black '>Cureit Health Association</div>
 
         </div>
         <div className="navbar-end  " >
@@ -28,7 +28,7 @@ const Navbar = (props) => {
           </div>
         </div>
 
-      </nav>
+      </header>
 
 
 
@@ -189,7 +189,7 @@ const Navbar = (props) => {
                 </div>
                 <div className="dropdown-menu " id="dropdown-menu">
                   <div className="dropdown-content">
-                    <NewsSec NEWS_URL={props.NEWS_URL} />
+                    <NewsSec NEWS_URL={NEWS_URL} />
 
                   </div>
                 </div>

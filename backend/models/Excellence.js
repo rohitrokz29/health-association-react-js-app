@@ -1,5 +1,7 @@
 const {mongoose,Schema}=require('mongoose');
 
+
+
 const excelSchema=new Schema({
     speciality:String,
     imageUrl:String,
@@ -11,3 +13,4 @@ const excelSchema=new Schema({
 
 const Excellence=mongoose.model('excellence',excelSchema);
 module.exports=Excellence;
+

@@ -6,7 +6,7 @@ import axios from 'axios';
 
 
 
-const Lower = (props) => {
+const Lower = () => {
 
     /*
     email and password are the states for the subscrib for in lowr columns

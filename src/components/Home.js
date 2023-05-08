@@ -10,7 +10,7 @@ import ExpertSay from './ExpertSay';
 import Loader from './images/load.gif';
 import Lower from './Lower'
 
-const Home = (props) => {
+const Home = ({setProgress,baseurl}) => {
 
     /*
     Ecellence state store the data of Association excellency fields and
@@ -33,48 +33,38 @@ const Home = (props) => {
     /*
     destructuring the prop function to use in useEffect and avoid unnecessary loadings
     */
-    const setProgress = props.setProgress;
 
     // const baseurl=props.baseurl;
 // `${baseurl}api/get-data/home-data`||
-    const url = "http://localhost:5000/api/get-data/home-data";
 
 
-    const homeData = useCallback( async (url) => {
+    const homeData = async () => {
+    const GET_DATA_URL = "http://localhost:5000/api/get-data/home-data"
 
         try {
             setProgress(10);
-            const data = await axios.get(url);
+            const data = await axios.get(GET_DATA_URL);
             setProgress(54);
             console.log(data);
 
-            SetExcelldata(data.data.excellenceData);
-            SetSpecialistdata(data.data.specialistData);
 
+        SetExcelldata(data.data.excellenceData);
+        SetSpecialistdata(data.data.specialistData);
             setProgress(100);
             setLoading(false);
         }
         catch (err) {
             setProgress(0);
             console.log(err);
-            // homeData(url);
+            // homeData(GET_DATA_URL);
         }
-        return data;
-    },[])
+    }
+        
+
 
     useEffect(() => {
-        
-        homeData(url)
-
-        return () => {
-            console.log("axios request ranned");
-
-        }
-    }, [url, setProgress,setLoading]);
-
-    const data=useMemo(()=>{
-        return homeData()
-    })
+        homeData()
+    }, [homeData])
 
 
 
@@ -172,7 +162,7 @@ const Home = (props) => {
             <Lower/> component is the bottom part of home page showning
             all properties of association and projects in shorts.
             */}
-            <Lower baseurl={props.baseurl} />
+            <Lower baseurl={baseurl} />
 
         </>
     )

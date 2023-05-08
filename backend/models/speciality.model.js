@@ -5,11 +5,7 @@ const specialitySchema = new Schema({
   description:String,
   imageUrl:String,
   careTips :[{type:String}],
-  topDoctors:[{
-    name:String,
-    gender :String
-  }
-      ],
+
   patientsReview:  {title:String,
     videourl:String,
       description:String}
@@ -19,3 +15,5 @@ const specialitySchema = new Schema({
 const SpecialityModel = mongoose.model('speciality',specialitySchema);
 
 module.exports=SpecialityModel;
+
+

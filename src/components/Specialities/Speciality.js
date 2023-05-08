@@ -19,15 +19,25 @@ const [loading,setLoading]=useState(true);
 
 /*
 here id is the speciality type and url to fetch data related to the speciality
+
+
+
+*/
+
+
+
+/*
+USE THE BELOW FUNCTION IN NAVBAR COMPONENT AND LOA
+USE THE BELOW FUNCTION IN NAVBAR COMPONENT AND LOAD IT AND SHOW LOADING BAR WHILE USING FETCH REQUEST 
 */
 const {id}=useParams();
-const url = `http://localhost:5000/api/get-data/speciality-data/${id}`;
+const FETCH_URL = `http://localhost:5000/api/get-data/speciality-data/${id}`;
 
 useEffect(()=>{
-  const specialityData = async (url) => {
+  const specialityData = async (FETCH_URL) => {
          try { setLoading(true);
-             console.log(url);
-             const response = await axios.get(url);
+             console.log(FETCH_URL);
+             const response = await axios.get(FETCH_URL);
              console.log(response);
              setData(response.data);
 
@@ -37,11 +47,11 @@ useEffect(()=>{
          catch (err) {
              console.log(err);
 
-             specialityData(url);
+             // specialityData(url);
          }
      }
-      specialityData(url);
-},[url])
+      specialityData(FETCH_URL);
+},[FETCH_URL])
 
 
 

@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from 'react';
+import React,{useState,useEffect,useMemo} from 'react';
 import {Link} from 'react-router-dom';
 import Location from './cards/Location';
 import Loader from './images/load.gif';
@@ -10,27 +10,20 @@ const Center =({baseurl})=>{
     -- variable loading  is being used to have a look wheather data is fetched or not from axios get request which is set true                     for default and set to false when data is fetched
     -- variable centers is being used to save the location data of centers fetched through axios get request 
      */
-// const [loading,setLoading]=useState(true);
-// const [centers,setCenters]=useState([]);
 
-// useEffect(
-//     async ()=>{
-        
-//         const data=await axios.get((baseurl+"api/get-data/get-location").toString())
-//         setCenters(data.data.centers)
-//         setLoading(false);
-//         return (()=>{
-//             console.log(centers)
-//         })
-//     }
-// )
 
-const loading=false;
-const centers=[{location:"Mumbai",place:"Dhule",url:"/posi/all"},{location:"Mumbai",place:"Dhule",url:"/posi/all"},{location:"Mumbai",place:"Dhule",url:"/posi/all"},{location:"Mumbai",place:"Dhule",url:"/posi/all"},{location:"Delhi",place:"NCR",url:"/posi/all"}];
+const [loading,setLoading]=useState(true);
+const centers=useMemo(async () => {
+         const data=await axios.get((baseurl+"api/get-data/get-location").toString())
+        setLoading(false);
+        return data.data.centers;
+    })
+
+// const centers=[{location:"Mumbai",place:"Dhule",url:"/posi/all"},{location:"Mumbai",place:"Dhule",url:"/posi/all"},{location:"Mumbai",place:"Dhule",url:"/posi/all"},{location:"Mumbai",place:"Dhule",url:"/posi/all"},{location:"Delhi",place:"NCR",url:"/posi/all"}];
 
   return (
       <section style={{
-                  backgroundColor: 'rgb(0,0 , 0,0.2)'
+                  backgroundColor: 'rgb(0,0 , 0,0.15)'
               }} className="container is-centered mt-6 pb-6 ">
 
                   <div className="container subtitle has-text-centered is-centered mt- mb-5 pb-3 ">

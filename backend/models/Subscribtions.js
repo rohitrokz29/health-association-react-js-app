@@ -16,3 +16,4 @@ const SubscribtionSchema= new Schema({
 
 const Subscribtions=mongoose.model('subscribtions',SubscribtionSchema);
 module.exports=Subscribtions;
+

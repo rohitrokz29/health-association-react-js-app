@@ -16,7 +16,7 @@ require('dotenv').config();
  */
 
 const PORT=process.env.PORT || 5000;
-const Mongouri = process.env.uri ;
+const MONGO_URI= process.env.MONGO_URI ;
 
 /*
 - Since we are using React.js and express cors helps to make requests for this external backend  server
@@ -32,7 +32,7 @@ app.use(express.json());
  ConnectMongo Function takes the MongoDB uri and conects it to the MongoDB Database
  */
 
-ConnectToMongo(Mongouri);
+ConnectToMongo(MONGO_URI);
 
 /*
  * Declaring Methods below

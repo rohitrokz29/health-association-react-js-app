@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 
 
-const NewsSec = (props) => {
+const NewsSec = ({NEWS_URL,}) => {
 
 /*
   News state store the latest news fetched by using the NEWS API which is stored
@@ -22,14 +22,14 @@ const NewsSec = (props) => {
     useEffect(() => {
 
           const fetchData = async () => {
-              const url = props.NEWS_URL;
-              const data = await fetch(url);
+              
+              const data = await fetch(NEWS_URL);
               const parsedData = await data.json();
               setNews({ articles: parsedData.articles, loading: false });
 
           }
         fetchData();
-    }, [props])
+    }, [NEWS_URL])
 
 
 

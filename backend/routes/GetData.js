@@ -18,11 +18,10 @@ getRouter.get('/home-data',async (req,res)=>{
 
         const specialistData = await Specialist.find();
         const excellenceData=await Excellence.find();
-        response ={excellenceData,specialistData};
-        res.status(200).json(response);
+        res.status(200).send(JSON.stringify({specialistData,excellenceData}));
     }
     catch{
-        res.status(404).json({message:"Not able to fetch"});
+        res.status(404).send(JSON.stringify({message:"Not able to fetch"}));
     }
 });
 
@@ -37,22 +36,24 @@ getRouter.get('/home-data',async (req,res)=>{
 getRouter.get('/speciality-data/:speciality',async (req,res)=>{
   try{
     const data= await  SpecialityModel.findOne({"speciality":req.params.speciality});
-      res.status(200).json(data);
-      console.log(data);
+      res.status(200).send(JSON.stringify(data));
 
   }
   catch(e){
-    console.log(e);
+        res.status(100).send(JSON.stringify({message:"Not able to fetch"}));
   }
 
 });
 
-getRouter.get('/get-location',async (req,res)=>{
+// getRouter.get('/get-location',async (req,res)=>{
 
-    try{
-        const data= await 
-    }
-});
+//     try{
+//         // mongoose.connection.db.collection('locations',(err,collection){
+//             // collection.find((err,data)=>console.log(data));
+//         // })
+//     // }
+
+// });
 
 
 

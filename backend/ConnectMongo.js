@@ -10,8 +10,8 @@ require('dotenv').config()
     Connecting to Database using ConnectToMongo function which always try to estab
     lish a connection on error also/
 */
-const ConnectToMongo = async (uri) => {
-    mongoose.connect(uri,{
+const ConnectToMongo = async (MONGO_URI) => {
+    mongoose.connect(MONGO_URI,{
         useNewUrlParser:true,
         // useCreateIndex:true,
         useunifiedTopology:true,
@@ -20,7 +20,8 @@ const ConnectToMongo = async (uri) => {
         console.log("Connected to Database")
     }).catch((err)=>{
         console.log('trying to reconnect');
-        ConnectToMongo();
+        ConnectToMongo(MONGO_URI);
+        return {message:"CANNOT FETCH"};
     });
 
 }

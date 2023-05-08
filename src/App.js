@@ -16,7 +16,7 @@ function App() {
   const [progress,setProgress]= useState(0);
 
   // baseurl is the base path for the api
-  const baseurl='http://localhost:5000/'
+  const API_URL='http://localhost:5000/'
 
   /*
     Logo's and image's used in this pages are taken from google and different websites
@@ -35,22 +35,19 @@ const NEWS_URL=process.env.NEWS_URL;
         />
 
         <Routes>
-          <Route key="home" exact path="/" element={<Home setProgress={setProgress} baseurl={baseurl}/>} />
+          <Route key="home" exact path="/" element={<Home setProgress={setProgress} baseurl={API_URL}/>} />
 
           <Route key="about" exact path="/about" element={<About />} />
 
-          <Route key="appointment" exact path="/book-an-appointment" element={<Appointment baseurl={baseurl}/>}  />
+          <Route key="appointment" exact path="/book-an-appointment" element={<Appointment baseurl={API_URL}/>}  />
 
-          <Route key='centers' exact path="/posi/:id"  element={<Center baseurl={baseurl}/>}/>
-
-          {    // in the <Speciality/> commponent ":id " is the speciality type passed in page link url
-          }
+          <Route key='centers' exact path="/posi/:id"  element={<Center baseurl={API_URL}/>}/>
 
 
-          <Route key="speciality" path="/speciality/:id" element={<Speciality  />}/>
+          <Route key="speciality" path="/speciality/:id" element={<Speciality baseurl={API_URL} />}/>
 
-          <Route key="join" path="/join/:id" element={<JoinUs baseurl={baseurl}/>} />
-          <Route key="news" exact path="/news" elament={<News/>} />
+          <Route key="join" path="/join/:id" element={<JoinUs baseurl={API_URL}/>} />
+          <Route key="news" exact path="/news" element={<News baseurl={API_URL}/>} />
         </Routes>
       </BrowserRouter>
   );

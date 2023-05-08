@@ -35,8 +35,8 @@ const About = () => {
 
                         </p>
                     </div>
-                    <figure className="image m-4 mb-0 pb-0 ">'
-                        <img style={{ width: "35vw",border:"4px solid black",borderRadius:"1rem" }} alt='LOGO NOT ABLE TO LOAD' src={about}  ></img>
+                    <figure className="image  m-4 mb-0 pb-0 ">'
+                        <img style={{ width: "35vw",border:"4px solid black",borderRadius:"1rem" }} alt='LOGO NOT ABLE TO LOAD' src={about} className=" about-logo"  ></img>
                     </figure>
                 </div>
                 <div className="container is-flex is-justify-content-space-around is-flexwrap-wrap mt-0 pt-0 pb-0  ">
