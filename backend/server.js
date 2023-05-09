@@ -15,8 +15,10 @@ require('dotenv').config();
   Mongouri represent the uri of MongoDB atlas Database
  */
 
-const PORT=process.env.PORT || 5000;
-const MONGO_URI= process.env.MONGO_URI ;
+const PORT=process.env.PORT ;
+
+const MONGO_URI= `mongodb+srv://${process.env.MONGO_DB_USER_NAME}:${process.env.MONGO_DB_USER_PSSWORD}@${process.env.MONGO_DB_CLUSTER}/?retryWrites=true&w=majority`
+
 
 /*
 - Since we are using React.js and express cors helps to make requests for this external backend  server
@@ -39,7 +41,7 @@ ConnectToMongo(MONGO_URI);
  */
 
 app.use('/api/get-data',require('./routes/GetData'));
-app.use('api/sendData',require('./routes/SendData'));
+app.use('/api/sendData',require('./routes/SendData'));
 
 /*
  Running the server on port=PORT 

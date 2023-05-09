@@ -5,7 +5,7 @@ import axios from 'axios';
 import Loader from '../images/load.gif'
 import Specialist from '../cards/Specialist.js'
 
-const Speciality = ()=>{
+const Speciality = ({API_URL})=>{
 
 
 
@@ -31,7 +31,7 @@ USE THE BELOW FUNCTION IN NAVBAR COMPONENT AND LOA
 USE THE BELOW FUNCTION IN NAVBAR COMPONENT AND LOAD IT AND SHOW LOADING BAR WHILE USING FETCH REQUEST 
 */
 const {id}=useParams();
-const FETCH_URL = `http://localhost:5000/api/get-data/speciality-data/${id}`;
+const FETCH_URL = (API_URL+"api/get-data/speciality-data/"+id).toString();
 
 useEffect(()=>{
   const specialityData = async (FETCH_URL) => {

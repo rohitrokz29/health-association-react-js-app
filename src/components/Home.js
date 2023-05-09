@@ -10,7 +10,7 @@ import ExpertSay from './ExpertSay';
 import Loader from './images/load.gif';
 import Lower from './Lower'
 
-const Home = ({setProgress,baseurl}) => {
+const Home = ({setProgress,baseurl,API_URL}) => {
 
     /*
     Ecellence state store the data of Association excellency fields and
@@ -22,6 +22,7 @@ const Home = ({setProgress,baseurl}) => {
     const [Specialistdata, SetSpecialistdata] = useState([]);
     const {loading,setLoading}=useState(true);
     /*
+
     useEffect hook used to fetch the data of specialists and excellence
     from the api = base path+"/api/get-data/home-data" using the homeData function
     which runs every time the page is updated
@@ -34,12 +35,10 @@ const Home = ({setProgress,baseurl}) => {
     destructuring the prop function to use in useEffect and avoid unnecessary loadings
     */
 
-    // const baseurl=props.baseurl;
-// `${baseurl}api/get-data/home-data`||
 
 
     const homeData = async () => {
-    const GET_DATA_URL = "http://localhost:5000/api/get-data/home-data"
+    const GET_DATA_URL = (API_URL+"api/get-data/home-data").toString();
 
         try {
             setProgress(10);

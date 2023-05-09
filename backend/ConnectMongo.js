@@ -16,9 +16,11 @@ const ConnectToMongo = async (MONGO_URI) => {
         // useCreateIndex:true,
         useunifiedTopology:true,
         // useFindAndModify:false
-    }).then(()=>{
+    })
+    .then(()=>{
         console.log("Connected to Database")
-    }).catch((err)=>{
+    })
+    .catch((err)=>{
         console.log('trying to reconnect');
         ConnectToMongo(MONGO_URI);
         return {message:"CANNOT FETCH"};

@@ -2,7 +2,7 @@ import React, { useId, useState ,useEffect} from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 
-const JoinUs = ({baseurl}) => {
+const JoinUs = ({API_URL}) => {
     const [check, setCheck] = useState(false);
     const { id } = useParams();
 
@@ -37,7 +37,7 @@ const handleChange=(e)=>{
                 document.querySelector("#message").innerHTML = "Please check in the box "
                 }
             else {
-                axios.post(({baseurl} + "location").toString(), JSON.stringify(new_data)).
+                axios.post((API_URL + "location").toString(), JSON.stringify(new_data)).
                 then(res => res.json()).
                 catch(err =>{document.querySelector("#message").innerHTML = err;
                             console.log(err);});

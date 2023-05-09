@@ -18,10 +18,10 @@ getRouter.get('/home-data',async (req,res)=>{
 
         const specialistData = await Specialist.find();
         const excellenceData=await Excellence.find();
-        res.status(200).send(JSON.stringify({specialistData,excellenceData}));
+        res.status(200).json(JSON.stringify({specialistData,excellenceData}));
     }
     catch{
-        res.status(404).send(JSON.stringify({message:"Not able to fetch"}));
+        res.status(404).json(JSON.stringify({message:"Not able to fetch"}));
     }
 });
 
@@ -33,25 +33,21 @@ getRouter.get('/home-data',async (req,res)=>{
  failed send - 404 code
  */
 
-getRouter.get('/speciality-data/:speciality',async (req,res)=>{
-  try{
-    const data= await  SpecialityModel.findOne({"speciality":req.params.speciality});
-      res.status(200).send(JSON.stringify(data));
-
-  }
-  catch(e){
-        res.status(100).send(JSON.stringify({message:"Not able to fetch"}));
-  }
+getRouter.get('/speciality-data/:speciality', (req,res)=>{
+  SpecialityModel.findOne({"speciality":req.params.speciality})
+  .then(data=>res.status(200).json(JSON.stringify(data)))    
+  .catch(e=>res.status(404).json(JSON.stringify({message:"Not able to fetch"})));
 
 });
 
-// getRouter.get('/get-location',async (req,res)=>{
 
-//     try{
-//         // mongoose.connection.db.collection('locations',(err,collection){
-//             // collection.find((err,data)=>console.log(data));
-//         // })
-//     // }
+// getRouter.get('/get-locations',async (req,res)=>{
+
+    // try{
+        // mongoose.connection.db.collection('locations',(err,collection){
+            // collection.find((err,data)=>console.log(data));
+        // })
+    // }
 
 // });
 

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from "axios";
-const Appointment = ({baseurl}) => {
+const Appointment = ({API_URL}) => {
 
     const [data, setData] = useState({name:"",phone:"",email:"",symptoms:"",income:""});
     const [check, setCheck] = useState(false)
@@ -21,7 +21,7 @@ const Appointment = ({baseurl}) => {
                 document.querySelector("#message").innerHTML = "Please check in the box";
             }
             else{
-                    let res=await axios.post(({baseurl}+"location").toString(),JSON.stringify(data)).
+                    let res=await axios.post((API_URL+"location").toString(),JSON.stringify(data)).
                     then(res=>res.json()).
                     then(res=>console.log(res)).
                     catch(err=>document.querySelector("#message").innerHTML = err)

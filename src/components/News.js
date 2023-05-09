@@ -2,7 +2,7 @@ import React,{useState} from 'react';
 import Loader from './images/load.gif';
 import NewsCard from "./cards/NewsCard.js";
 
-const News =({baseurl})=>{
+const News =({API_URL})=>{
     
     /*
     -- variable loading  is being used to have a look wheather data is fetched or not from axios get request which is set true                     for default and set to false when data is fetched

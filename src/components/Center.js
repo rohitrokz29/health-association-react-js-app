@@ -4,7 +4,7 @@ import Location from './cards/Location';
 import Loader from './images/load.gif';
 import axios from "axios";
 
-const Center =({baseurl})=>{
+const Center =({API_URL})=>{
     
     /*
     -- variable loading  is being used to have a look wheather data is fetched or not from axios get request which is set true                     for default and set to false when data is fetched
@@ -14,7 +14,7 @@ const Center =({baseurl})=>{
 
 const [loading,setLoading]=useState(true);
 const centers=useMemo(async () => {
-         const data=await axios.get((baseurl+"api/get-data/get-location").toString())
+         const data=await axios.get((API_URL+"api/get-data/get-location").toString())
         setLoading(false);
         return data.data.centers;
     })
