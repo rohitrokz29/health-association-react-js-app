@@ -40,7 +40,9 @@ code {
     background-color: transperent;
 }
 
-
+.news-bar{
+    border-bottom:1px  solid #d9cdcd ;
+}
 
 .youtube .fa:hover {
     color: rgb(238, 43, 43);

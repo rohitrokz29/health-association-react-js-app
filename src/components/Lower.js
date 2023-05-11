@@ -12,9 +12,12 @@ const Lower = () => {
     email and password are the states for the subscrib for in lowr columns
     */
 
-const [email,setEmail]=useState('');
-const [phone,setPhone]=useState('');
+const [data,setData]=useState({phone:"",email:""});
 
+const handleChange=(e)=>{
+    const {name,value}=e.target;
+    setData({ ...data,[name]:value});
+}
 
     /*
     Subscribe function posts or sends the subscription data to the database through axios and api
@@ -26,12 +29,9 @@ const [phone,setPhone]=useState('');
 e.preventDefault();
 if(true){
   try {
-    console.log({email,phone});
+    console.log(data);
 
-    const sendData =  axios.post('http:localhost:5000/api/sendData/subscribtion',{
-                                  email:email,
-                                  phone:phone
-                                })
+    const sendData =  axios.post('http:localhost:5000/api/sendData/subscribtion',data)
                         .then(res=>res.json())
 
   } catch (e) {
@@ -60,10 +60,10 @@ if(true){
 
                         <form method='post'  className="form">
                             <label htmlFor="email" className="email" id="email">Email:
-                                <input type="email" value={email} onChange={e=>setEmail(e.target.value)} name='email' placeholder='Email' className="input" />
+                                <input type="email" value={data.email} onChange={handleChange} name='email' placeholder='Email' className="input" />
                             </label>
                             <label htmlFor="phone" className="phone">Phone:
-                                <input type="number" placeholder='Mobile Number' value={phone} onChange={e=>setPhone(e.target.value)} name="phone" className='input is-hoverable' id="phone  " /></label>
+                                <input type="number" placeholder='Mobile Number' value={data.phone} onChange={handleChange} name="phone" className='input is-hoverable' id="phone  " /></label>
                             <p>   By Subscribing you accept to our terms and conditions.
                             </p>
                             <input type="button" onClick={Subscribe} className='input button has-background-danger has-text-white is-hoverable' value="Subscribe" />
@@ -93,9 +93,11 @@ if(true){
                         </div>
 
                         <div className="container is-flex is-flex-direction-column">
-                            <Link to="/" className="has-text-white">1</Link>
-                            <Link to="/" className="has-text-white">2</Link>
-                            <Link to="/" className="has-text-white">3</Link>
+                            <Link to="/" className="has-text-white">Cardiology</Link>
+                            <Link to="/" className="has-text-white">Neurology</Link>
+                            <Link to="/" className="has-text-white">Dermatology</Link>
+                            <Link to="/" className="has-text-white">Gynecology</Link>
+
                         </div>
                       </div>
                     <div className="box has-background-dark has-text-white">

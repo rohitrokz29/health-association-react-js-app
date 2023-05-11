@@ -123,7 +123,7 @@ return(
 
                             <div className="second mt-6 pt-4 ml-5">
                                 <figure className="image">
-                                    <img src={data.imageUrl} className="image" style={{width:"70vh"}}/>
+                                    <img src={data.imageUrl}  alt="NOT AVAILABLE" className="image" style={{width:"70vh"}}/>
                                 </figure>
                             </div>
 

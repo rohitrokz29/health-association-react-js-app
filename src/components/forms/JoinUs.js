@@ -3,20 +3,15 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 
 const JoinUs = ({API_URL}) => {
+        const join_as = ["Specialist", "Nurse", "Therapist", "Physician", "Technologist", "Pharmacist"];
+
     const [check, setCheck] = useState(false);
-    const { id } = useParams();
-
-  const [profession, setProfession] = useState(id);
-  useEffect(() => {
-      return () => {
-          setProfession(id)
-      };
-  }, [useParams()])
+    const [new_data, setNew_data] = useState({ name: "", email: "", profession: "", speciality: "", education: "", phone: "", });
+        const { id } = useParams();
 
 
-    const join_as = ["Specialist", "Nurse", "Therapist", "Physician", "Technologist", "Pharmacist"];
-    // const [new_data,setNew_data]=useState({name:"",email:"",phone:'',profession:"",education:"",speciality:'',check:true});
-    const [new_data, setNew_data] = useState({ name: "", email: "", profession: profession, speciality: "", education: "", phone: "", });
+
+
 
 const handleChange=(e)=>{
     const {name,value}=e.target;
@@ -79,7 +74,7 @@ const handleChange=(e)=>{
                     </div>
                     <div className="field mt-4" style={{ width: "30vw" }}>
                         <div className="control has-icons-left has-icons-right">
-                            <input className="input is-success   " type="number" name="phone" value={new_data.phone} onChange={handleChange} placeholder="ContactNumber" />
+                            <input className="input is-success   " type="number" maxLength="13" minLength="10" name="phone" value={new_data.phone} onChange={handleChange} placeholder="ContactNumber" />
                             <span className="icon is-small is-left">
                                 <i className="fa fa-phone"></i>
                             </span>

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 
-
-const NewsSec = ({NEWS_API,}) => {
+const NewsSec = ({NEWS_API}) => {
 
 /*
   News state store the latest news fetched by using the NEWS API which is stored
@@ -23,9 +23,8 @@ const NewsSec = ({NEWS_API,}) => {
 
           const fetchData = async () => {
               
-              const data = await fetch(NEWS_API);
-              const parsedData = await data.json();
-              setNews({ articles: parsedData.articles, loading: false });
+              const data = await axios.get(`${NEWS_API}&pageSize=6`);
+              setNews({ articles: data.data.articles, loading: false });
 
           }
         fetchData();
@@ -48,8 +47,9 @@ const NewsSec = ({NEWS_API,}) => {
             */}
             {
                 News.articles.map((ele) => {
+
                     return (
-                        <Link key={ele.url} to={ele.url} target='_blank' className="dropdown-item has-text-weight-medium" >{
+                        <Link key={ele.url} to={ele.url} target='_blank' className="dropdown-item has-text-weight-medium news-bar" >{
                             ele.title ? ele.title.slice(0, 50) : '......'
                         }</Link>
                     )
@@ -59,7 +59,7 @@ const NewsSec = ({NEWS_API,}) => {
             {/*
             button to see more news
             */}
-            <div className="dropdown-item is-centered ">
+            <div className="dropdown-item is-centered is-flex is-justify-content-center">
             <Link to="/news">
                 <div className="button is-rounded is-centered  has-background-grey-lighter  ">See More</div>
                 </Link>

@@ -10,6 +10,7 @@ import Speciality from './components/Specialities/Speciality';
 import Center from './components/Center'
 import Appointment from './components/forms/Appointment';
 import News from './components/News';
+import Donate from './components/forms/Donate'
 
 function App() {
 
@@ -17,10 +18,9 @@ function App() {
 
   // baseurl is the base path for the api
 
-  const API_URL=process.env.REACT_APP_BASE_URL;
+  const API_URL=process.env.REACT_APP_API ;
 
   const NEWS_API=process.env.REACT_APP_NEWS_API;
-
 
   /*
     Logo's and image's used in this pages are taken from google and different websites
@@ -50,7 +50,10 @@ function App() {
           <Route key="speciality" path="/speciality/:id" element={<Speciality API_URL={API_URL} />}/>
 
           <Route key="join" path="/join/:id" element={<JoinUs API_URL={API_URL}/>} />
-          <Route key="news" exact path="/news" element={<News API_URL={API_URL} NEWS_API={NEWS_API}/>} />
+
+          <Route key="news" exact path="/news" element={<News NEWS_API={NEWS_API}/>} />
+        
+          <Route kry="donate" exatc path="/donate" element={<Donate API_URL={API_URL}/>} />
         </Routes>
       </BrowserRouter>
   );

@@ -18,7 +18,7 @@ function NewsCard({id,url ,headline, description,publishedAt,image }) {
     <div className="content">
     <div className="container ">
     	<figure className="image is-256x256">
-    		<img src={image} alt="NO IMAGE AVAILABLE" className="image" />
+    		<img src={image} alt="NOT AVAILABLE" className="image" />
     	</figure>
     </div>
     <div className="conatiner mx-1 has-text-black   is-size-6" >{description.slice(0,150)}...	</div>

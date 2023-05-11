@@ -37,8 +37,11 @@ const Home = ({setProgress,baseurl,API_URL}) => {
 
 
 
-    const homeData = async () => {
-    const GET_DATA_URL = (API_URL+"api/get-data/home-data").toString();
+    
+
+    useEffect(() => {
+        const homeData = async () => {
+    const GET_DATA_URL = ({API_URL}+"api/get-data/home-data").toString();
 
         try {
             setProgress(10);
@@ -60,10 +63,8 @@ const Home = ({setProgress,baseurl,API_URL}) => {
     }
         
 
-
-    useEffect(() => {
         homeData()
-    }, [homeData])
+    },[API_URL])
 
 
 

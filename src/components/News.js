@@ -1,8 +1,8 @@
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
 import Loader from './images/load.gif';
 import NewsCard from "./cards/NewsCard.js";
-
-const News =({API_URL})=>{
+import axios from 'axios'
+const News =({NEWS_API})=>{
     
     /*
     -- variable loading  is being used to have a look wheather data is fetched or not from axios get request which is set true                     for default and set to false when data is fetched
@@ -15,9 +15,11 @@ REMAINING TO ADD INFINITE LOADER
 */
 
 const [loading,setLoading]=useState(false);
+const [page, setPage] = useState(1)
 
 
-const news=[
+
+const data=[
     {
       "id":"3873h3739gub393",
       "headline":" eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem",
@@ -63,6 +65,10 @@ const news=[
 
 
   ]
+const [news, setNews] = useState({articles:data});
+
+
+
   return (
       <section style={{
                   backgroundColor: 'rgb(0,0 , 0,0.15)'
@@ -77,7 +83,7 @@ const news=[
             </div>}
                  <div className=" news-box  is-flex is-justify-content-space-around is-flex-wrap-wrap">
                       {          
-               !loading && news.map((ele)=>{
+               !loading && news.articles.map((ele)=>{
                 return(
 
                         <NewsCard key={ele.id} headline={ele.headline} publishedAt={ele.publishedAt} description={ele.description} url={ele.url}   />

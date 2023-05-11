@@ -38,7 +38,7 @@ const Appointment = ({API_URL}) => {
         <section style={{
             backgroundColor: 'rgb(0,0 , 0,0.1)',
 
-        }} className="container is-centered mt-6 pb-6 mb-0 pt-6  ">
+        }} className="container is-centered mt-6 pb-6  ">
 
             <div className="container subtitle has-text-centered is-centered mb-2 pb-5 ">
                 <strong className='has-text-black is-size-3 is-underlined'>Book   </strong>
