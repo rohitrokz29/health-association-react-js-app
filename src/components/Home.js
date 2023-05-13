@@ -20,7 +20,7 @@ const Home = ({setProgress,baseurl,API_URL}) => {
 
     const [Excelldata, SetExcelldata] = useState([]);
     const [Specialistdata, SetSpecialistdata] = useState([]);
-    const {loading,setLoading}=useState(true);
+    const [loading,setLoading]=useState(true);
     /*
 
     useEffect hook used to fetch the data of specialists and excellence
@@ -41,17 +41,17 @@ const Home = ({setProgress,baseurl,API_URL}) => {
 
     useEffect(() => {
         const homeData = async () => {
-    const GET_DATA_URL = ({API_URL}+"api/get-data/home-data").toString();
+    const GET_DATA_URL = (`${API_URL}api/get-data/home-data`).toString();
 
         try {
             setProgress(10);
             const data = await axios.get(GET_DATA_URL);
             setProgress(54);
-            console.log(data);
+            console.log(JSON.parse(data.data));
 
 
-        SetExcelldata(data.data.excellenceData);
-        SetSpecialistdata(data.data.specialistData);
+        SetExcelldata(JSON.parse(data.data).excellenceData);
+        SetSpecialistdata(JSON.parse(data.data).specialistData);
             setProgress(100);
             setLoading(false);
         }
@@ -64,7 +64,7 @@ const Home = ({setProgress,baseurl,API_URL}) => {
         
 
         homeData()
-    },[API_URL])
+    },[API_URL,loading])
 
 
 
@@ -98,10 +98,10 @@ const Home = ({setProgress,baseurl,API_URL}) => {
                 </div>
                 <div className="hero-body mb-0 pb-0 is-flex is-justify-content-space-evenly is-flex-wrap-wrap ">
 
-                    {!loading && <img className="image " alt="_blank" style={{ width: "10vw" }} src={Loader} />}
+                    {loading && <img className="image " alt="_blank" style={{ width: "10vw" }} src={Loader} />}
                     {
 
-                        (loading) && Excelldata.map((ele) => {
+                        (!loading) && Excelldata.map((ele) => {
                             return (
                                 <ExcelllCard image={ele.imageUrl} url={ele.url} key={ele.description} speciality={ele.speciality} description={ele.description} />
                             )
@@ -124,11 +124,11 @@ const Home = ({setProgress,baseurl,API_URL}) => {
 
 
                 <div className="hero-body mb-0  pt-1 pb-0 is-flex is-justify-content-space-evenly is-flex-wrap-wrap ">
-                {!loading && <img className="image " alt="_blank" style={{ width: "10vw" }} src={Loader} />}
+                {loading && <img className="image " alt="_blank" style={{ width: "10vw" }} src={Loader} />}
 
                     {
 
-                        (loading) && Specialistdata.filter((ele, idx) => idx < 8).map((ele) => {
+                        (!loading) && Specialistdata.filter((ele, idx) => idx < 8).map((ele) => {
                             return (
                                 <Specialist key={ele.name} gender={ele.gender} name={ele.name} qualification={ele.qualification} />
                             )
@@ -162,7 +162,7 @@ const Home = ({setProgress,baseurl,API_URL}) => {
             <Lower/> component is the bottom part of home page showning
             all properties of association and projects in shorts.
             */}
-            <Lower baseurl={baseurl} />
+            <Lower API_URL={API_URL} />
 
         </>
     )

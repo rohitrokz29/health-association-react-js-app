@@ -2,7 +2,9 @@ const express =require('express');
 const Excellence = require('../models/Excellence');
 const Specialist =require('../models/Specialist');
 const SpecialityModel =require('../models/speciality.model');
+const Centers=require("../models/Centers");
 
+const mongoose=require("mongoose");
 /*
  Declaring below thr express router for get requests to fectch data from database named "getRouter"
  */
@@ -18,7 +20,7 @@ getRouter.get('/home-data',async (req,res)=>{
 
         const specialistData = await Specialist.find();
         const excellenceData=await Excellence.find();
-        res.status(200).json(JSON.stringify({specialistData,excellenceData}));
+        res.status(200).json((JSON.stringify({specialistData,excellenceData})));
     }
     catch{
         res.status(404).json(JSON.stringify({message:"Not able to fetch"}));
@@ -41,15 +43,13 @@ getRouter.get('/speciality-data/:speciality', (req,res)=>{
 });
 
 
-// getRouter.get('/get-locations',async (req,res)=>{
+getRouter.get('/get-locations',async (req,res)=>{
+        Centers.
+        find().
+        then(data=>res.status(202).json(JSON.stringify(data))).
+        catch(err=>res.status(404).json(JSON.stringify({message:"cannot find",data:err}))); 
 
-    // try{
-        // mongoose.connection.db.collection('locations',(err,collection){
-            // collection.find((err,data)=>console.log(data));
-        // })
-    // }
-
-// });
+});
 
 
 

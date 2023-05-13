@@ -12,20 +12,12 @@ require('dotenv').config()
 */
 const ConnectToMongo = async (MONGO_URI) => {
     mongoose.connect(MONGO_URI,{
-        useNewUrlParser:true,
+      dbName: `health-association`,
+            useNewUrlParser:true,
         // useCreateIndex:true,
         useunifiedTopology:true,
         // useFindAndModify:false
-    })
-    .then(()=>{
-        console.log("Connected to Database")
-    })
-    .catch((err)=>{
-        console.log('trying to reconnect');
-        ConnectToMongo(MONGO_URI);
-        return {message:"CANNOT FETCH"};
-    });
-
+    }).then(()=>console.log("Connected to DB")).catch((err)=>{ConnectToMongo(MONGO_URI)});
 }
 
 module.exports = {

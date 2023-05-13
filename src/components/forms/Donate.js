@@ -15,10 +15,7 @@ const Donate = ({API_URL}) => {
     			document.getElementById("message").innerHTML="Enter Correct Details";
     	}
     	else {
-    		if(data.phone.toString().length<15 || data.phone.toString().length>19){
-                document.getElementById("message").innerHTML="Enter Valid Details ";
-            }
-            else {
+    	
                 if(!check){
                 document.getElementById("message").innerHTML="Please check the box";
                 }
@@ -26,13 +23,12 @@ const Donate = ({API_URL}) => {
                 document.getElementById("message").innerHTML="";
 
 
-                    axios.post(`${API_URL}/donate`.toString(),JSON.stringify(data))
+                    axios.post(`${API_URL}api/sendData/donate`,data)
                     .then(res=>res.json()).then(res=>console.log(res))
                     .catch(res=>{document.getElementById("message").innerHTML="Error in Submission";})
 
                 }
 
-            }
     	}
 
     }
@@ -44,6 +40,7 @@ const Donate = ({API_URL}) => {
 		
        <section style={{
             backgroundColor: 'rgb(0,0 , 0,0.1)',
+            height:"80vh"
 
         }} className="container is-centered mt-6 pb-6  ">
 
@@ -65,7 +62,7 @@ const Donate = ({API_URL}) => {
 
                     	<div className="field mt-4 is-centered" style={{ width: "30vw" }}>
                         <div className="control has-icons-left has-icons-right">
-                            <input className="input is-success   "  name="phone"  value={data.phone} onChange={changeData} type="tel" placeholder="Contact Number" />
+                            <input className="input is-success   "  name="phone"  value={data.phone} onChange={changeData} type="number" placeholder="Contact Number" />
                             <span className="icon is-small is-left">
                                 <i className="fa fa-phone"></i>
                             </span>

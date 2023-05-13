@@ -32,8 +32,8 @@ const handleChange=(e)=>{
                 document.querySelector("#message").innerHTML = "Please check in the box "
                 }
             else {
-                axios.post((API_URL + "location").toString(), JSON.stringify(new_data)).
-                then(res => res.json()).
+                axios.post(`${API_URL}api/sendData/joinus`, (new_data)).
+                then(res => console.log(JSON.parse(res.data))).
                 catch(err =>{document.querySelector("#message").innerHTML = err;
                             console.log(err);});
                 console.log((new_data));

@@ -3,9 +3,8 @@ const specialistSchema=new Schema({
     name:String,
     education:String,
     speciality:String,
-    dob: Date
-},{
-    collection:'specialists'
+    dob: Date,
+    gender:String
 });
 
 const Specialist=mongoose.model("specialists",specialistSchema);

@@ -6,13 +6,14 @@ import axios from 'axios';
 
 
 
-const Lower = () => {
+const Lower = ({API_URL}) => {
 
     /*
     email and password are the states for the subscrib for in lowr columns
     */
 
 const [data,setData]=useState({phone:"",email:""});
+const [message,setMessage]=useState({color:"danger",message:""});
 
 const handleChange=(e)=>{
     const {name,value}=e.target;
@@ -24,20 +25,20 @@ const handleChange=(e)=>{
     */
 
   const Subscribe= async (e)=>{
-
-// let resp=confirm('Are you sure to subscribe?');
 e.preventDefault();
-if(true){
-  try {
-    console.log(data);
-
-    const sendData =  axios.post('http:localhost:5000/api/sendData/subscribtion',data)
-                        .then(res=>res.json())
-
-  } catch (e) {
-    alert(e)
-  }
+if(data.email===""){
+setMessage({color:"danger",message:"Enter Correct Details"});
 }
+else{
+    axios.post(`${API_URL}api/sendData/subscribtion`,data).
+    then((res)=>{
+        setMessage({color:"success",message:"Successfully Subscribed"});
+    }).
+    catch((err)=>{
+            setMessage({color:"danger",message:"Subscribtion Failed"});
+    });
+}
+
   }
     return (
         <>
@@ -54,11 +55,10 @@ if(true){
 
 
                         {/*
-                          Form for subscribtion
-                          taking email and phone nummber
+                          Form for subscribtion taking email and phone nummber
                         */}
 
-                        <form method='post'  className="form">
+                        <form method='post'  className="form" onSubmit={Subscribe}>
                             <label htmlFor="email" className="email" id="email">Email:
                                 <input type="email" value={data.email} onChange={handleChange} name='email' placeholder='Email' className="input" />
                             </label>
@@ -66,7 +66,12 @@ if(true){
                                 <input type="number" placeholder='Mobile Number' value={data.phone} onChange={handleChange} name="phone" className='input is-hoverable' id="phone  " /></label>
                             <p>   By Subscribing you accept to our terms and conditions.
                             </p>
-                            <input type="button" onClick={Subscribe} className='input button has-background-danger has-text-white is-hoverable' value="Subscribe" />
+                                
+                                   <strong className={`has-text-${message.color}-dark has-text-weight-bold`} >
+                                        {message.message}
+                                    </strong>
+                                
+                            <input type="button" type="submit" className='input button has-background-danger has-text-white is-hoverable' value="Subscribe" />
                         </form></div>
                     <div className="box has-background-dark has-text-white">
                         <div className="subtitle has-text-warning">About Cureit</div>

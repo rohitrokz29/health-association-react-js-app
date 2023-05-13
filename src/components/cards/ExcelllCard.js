@@ -24,7 +24,7 @@ const ExcelllCard = ({image,url,description,speciality}) => {
             <div className="card-content pt-1 mt-0 is-centered has-text-black">
                 {description.length<60?description:(description.slice(0,60)+'....')}
                     <br/>
-                    <a href={url} className="button is-rounded is-hoverable is-small is-centered has-text-dark is-grey-lighter">Read More</a>
+                    <a href={url} className="button is-rounded is-hoverable mx-6 is-small is-centered has-text-dark is-grey-lighter">Read More</a>
             </div>
         </div>
     )

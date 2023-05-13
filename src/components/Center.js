@@ -45,7 +45,7 @@ const centers=useMemo(async () => {
                !loading && centers.map((ele)=>{
                 return(
 
-                    <Location url={ele.url} location={ele.location} place={ele.place} key={ele.url} />
+                    <Location url={ele.url} location={ele.center} place={ele.area} key={ele.url} />
                         
                         )
                       })
