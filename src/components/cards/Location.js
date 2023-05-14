@@ -13,17 +13,17 @@ const Location=({url,center,area})=>{
     return (
         <>
         <Link to={url}  target="_blank" className="container location-box box is-hoverable is-size-4 has-text-centered is-flex is-flex-direction-row is-align-items-center is-justify-content-center">
-                            <Link to={url} target="_blank" className="has-text-black		has-text-weight-semibold">
+                            <div  className="has-text-black		has-text-weight-semibold">
                                     {center}
-                                  </Link>
+                                  </div>
                                   <div className="icon has-text-black is-size-1 has-text-dark m-4">
                                   <i className="fa fa-angle-right has-text-black"></i>
                                   <i className="fa fa-angle-right has-text-black"></i>
                                 </div>
 
-                                <Link to={url} target="_blank" className="has-text-black has-text-weight-semibold	">
+                                <div  className="has-text-black has-text-weight-semibold	">
                                   {area}
-                                </Link>
+                                </div>
                           </Link>
         </>
     )

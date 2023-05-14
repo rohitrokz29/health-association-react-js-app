@@ -13,12 +13,22 @@ const Center =({API_URL})=>{
 
 
 const [loading,setLoading]=useState(true);
-const centers=useMemo(async () => {
-         const data=await axios.get((API_URL+"api/get-data/get-location").toString())
-        setLoading(false);
-        return data.data.centers;
-    })
+const [centers, setCenters] = useState([]);
 
+useEffect( () => {
+        const centerData= async ()=>{
+            const result= await axios.get(`${API_URL}api/get-data/get-location`);
+           console.log(result.data);
+
+            setCenters(JSON.parse(result.data));
+        } 
+
+            centerData();
+
+    return () => {     
+            setLoading(false);
+    };
+}, [])
 // const centers=[{location:"Mumbai",place:"Dhule",url:"/posi/all"},{location:"Mumbai",place:"Dhule",url:"/posi/all"},{location:"Mumbai",place:"Dhule",url:"/posi/all"},{location:"Mumbai",place:"Dhule",url:"/posi/all"},{location:"Delhi",place:"NCR",url:"/posi/all"}];
 
   return (
@@ -45,7 +55,7 @@ const centers=useMemo(async () => {
                !loading && centers.map((ele)=>{
                 return(
 
-                    <Location url={ele.url} location={ele.center} place={ele.area} key={ele.url} />
+                    <Location url={ele.url} center={ele.center} area={ele.area} key={ele.area} />
                         
                         )
                       })

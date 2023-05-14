@@ -8,6 +8,7 @@ const Help=require('../models/Help');
  Declaring below thr express router for post requests to put data into database named "sendRouter"
  */
 
+
 const sendRouter=express.Router();
 
 /*
@@ -39,7 +40,6 @@ sendRouter.post('/appointment',(req,res)=>{
     .catch(err=>res.status(402).json(JSON.stringify({message:"unsuccessful",data:err})));
 })
 
-
 sendRouter.post('/joinus',(req,res)=>{
   const newMember=new Members({
       name:req.body.name,
@@ -49,7 +49,7 @@ sendRouter.post('/joinus',(req,res)=>{
       education:req.body.education,
       phone:req.body.phone 
   });
-console.log(newMember);
+
 
 newMember.save().
 then(result=>res.status(202).json(JSON.stringify({data:result}))).

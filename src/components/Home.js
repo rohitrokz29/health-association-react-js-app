@@ -50,8 +50,8 @@ const Home = ({setProgress,baseurl,API_URL}) => {
             console.log(JSON.parse(data.data));
 
 
-        SetExcelldata(JSON.parse(data.data).excellenceData);
-        SetSpecialistdata(JSON.parse(data.data).specialistData);
+            SetExcelldata(JSON.parse(data.data).excellenceData);
+            SetSpecialistdata(JSON.parse(data.data).specialistData);
             setProgress(100);
             setLoading(false);
         }
@@ -64,7 +64,7 @@ const Home = ({setProgress,baseurl,API_URL}) => {
         
 
         homeData()
-    },[API_URL,loading])
+    },[])
 
 
 

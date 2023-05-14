@@ -1,7 +1,8 @@
 const express = require('express');
 const cors =require('cors');
 const { urlencoded } = require('express');
-const {  ConnectToMongo } = require('./ConnectMongo');
+const mongoose = require('mongoose');
+
 const app =express();
 
 /*
@@ -9,7 +10,9 @@ const app =express();
  */
 
 require('dotenv').config();
-
+var bodyParser = require('body-parser');
+app.use(bodyParser.json({limit: "50mb"}));
+app.use(bodyParser.urlencoded({limit: "50mb", extended: true, parameterLimit:50000}))
 /*
   PORT represent the port on which server is running
   Mongouri represent the uri of MongoDB atlas Database
@@ -33,7 +36,6 @@ app.use(express.json());
  ConnectMongo Function takes the MongoDB uri and conects it to the MongoDB Database
  */
 
-ConnectToMongo(MONGO_URI);
 
 /*
  * Declaring Methods below
@@ -45,13 +47,29 @@ app.use('/api/sendData',require('./routes/SendData'));
 /*
  Running the server on port=PORT 
  */
+// async (MONGO_URI) => {
+    mongoose.connect(MONGO_URI,{
+      dbName: `health-association`,
+            useNewUrlParser:true,
+        // useCreateIndex:true,
+        useunifiedTopology:true,
+        // useFindAndModify:false
+    }).then(()=>{
+        console.log("Connected to DB")
+        
+        app.listen(PORT,(suc,err)=>{
 
-app.listen(PORT,(suc,err)=>{
+        if(err){
+         console.log(`\nError: ${err}`);
+        }
+        else{
+            console.log(`\nServer running at http://localhost:${PORT}\n`);
+        }
+    });
 
-    if(err){
-        console.log(`\nError: ${err}`);
-    }
-    else{
-        console.log(`\nServer running at http://localhost:${PORT}\n`);
-    }
-});
+    })
+    // .catch((err)=>{ConnectToMongo(MONGO_URI)});
+// }
+
+
+

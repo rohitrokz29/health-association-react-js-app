@@ -43,7 +43,7 @@ getRouter.get('/speciality-data/:speciality', (req,res)=>{
 });
 
 
-getRouter.get('/get-locations',async (req,res)=>{
+getRouter.get('/get-location',async (req,res)=>{
         Centers.
         find().
         then(data=>res.status(202).json(JSON.stringify(data))).

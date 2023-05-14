@@ -18,6 +18,27 @@ const handleChange=(e)=>{
     setNew_data({ ...new_data,[name]:value});
 }
 
+ const convertBase64 = (file) => {
+    return new Promise((resolve, reject) => {
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(file)
+      fileReader.onload = () => {
+        resolve(fileReader.result);
+      }
+      fileReader.onerror = (error) => {
+        reject(error);
+      }
+    })
+  }
+
+const handleFileRead = async (event) => {
+    const file = event.target.files[0]
+    const base64 = await convertBase64(file)
+    console.log(base64);
+    setNew_data({...new_data,[event.target.name]:base64})
+  }
+
+
     const joinUS =  (e) => {
    
 
@@ -118,7 +139,13 @@ const handleChange=(e)=>{
                     <div className="field mt-4" style={{ width: "30vw" }}>
                         <div className="control has-icons-left has-icons-right has-text-black">
                             Educational Details in One File Below:
-                            <input className="input is-success   " type="file" name="education" value={new_data.education} onChange={handleChange}  />
+                            <input className="input is-success   " type="file" name="education"   
+                                 required
+                                label="Document"
+                                
+                                onChange={e => handleFileRead(e)}
+                                size="small"
+                                variant="standard"/>
 
                         </div>
                     </div>

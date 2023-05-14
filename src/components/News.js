@@ -14,59 +14,23 @@ const News =({NEWS_API})=>{
 REMAINING TO ADD INFINITE LOADER 
 */
 
-const [loading,setLoading]=useState(false);
+const [loading,setLoading]=useState(true);
 const [page, setPage] = useState(1)
 
 
+const [news, setNews] = useState({});
+useEffect(() => {
+        axios.get(NEWS_API).then((res)=>{
+            setNews({articles:res.data.articles});
+            console.log(res.data.articles);
+        }).catch((err)=>{
+            console.log(err);
+        })
 
-const data=[
-    {
-      "id":"3873h3739gub393",
-      "headline":" eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem",
-      "description":"w Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur? gdckcbke d efk kbfed,l flkdn lkef nd f fn",
-      "url":"htdcbrib jdmfr",
-      "publishedAt":"25 Jan 2023"
-      },
-{
-      "id":"387hd3739gub393",
-      "headline":"THIS eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem IS HEATLINE JKDBKJBKCJB",
-      "description":"wg Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur? dckcbke d efk kbfed,l flkdn lkef nd f fn",
-      "url":"htdcbrib jdmfr",
-      "publishedAt":"25 Jan 2023"
-      },
-{
-      "id":"373hd3739gub393",
-      "headline":"THIS I eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatemS HEATLINE JKDBKJBKCJB",
-      "description":"wgdckcbke d Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur? efk kbfed,l flkdn lkef nd f fn",
-      "url":"htdcbrib jdmfr",
-      "publishedAt":"25 Jan 2023"
-      },
-{
-      "id":"3873hd3739gub33",
-      "headline":"THIS IS HE eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatemATLINE JKDBKJBKCJB",
-      "description":"wgdckcbke d Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur? efk kbfed,l flkdn lkef nd f fn",
-      "url":"htdcbrib jdmfr",
-      "publishedAt":"25 Jan 2023"
-      },
-{
-      "id":"3873hd339gub393",
-      "headline":"THIS IS H eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatemEATLINE JKDBKJBKCJB",
-      "description":"wgdckcbke d Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur? efk kbfed,l flkdn lkef nd f fn",
-      "url":"htdcbrib jdmfr",
-      "publishedAt":"25 Jan 2023"
-      },
-{
-      "id":"3873hd373gub393",
-      "headline":"THIS IS HEATLINE JKD eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatemBKJBKCJB",
-      "description":"wgdckcbke d Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?s efk kbfed,l flkdn lkef nd f fn",
-      "url":"htdcbrib jdmfr",
-      "publishedAt":"25 Jan 2023"
-      }
-
-
-  ]
-const [news, setNews] = useState({articles:data});
-
+    return () => {
+        setLoading(false)
+    };
+}, [])
 
 
   return (
@@ -82,14 +46,14 @@ const [news, setNews] = useState({articles:data});
             <img className="image" alt="Loading..." src={Loader}  style={{height:"12rem",width:"12rem" ,fontSize:"3rem",}}/>
             </div>}
                  <div className=" news-box  is-flex is-justify-content-space-around is-flex-wrap-wrap">
-                      {          
+                     {/* {          
                !loading && news.articles.map((ele)=>{
                 return(
 
-                        <NewsCard key={ele.id} headline={ele.headline} publishedAt={ele.publishedAt} description={ele.description} url={ele.url}   />
+                        <NewsCard key={ele.url} headline={ele.title} publishedAt={ele.publishedAt} description={ele.description} url={ele.url}   />
                         )
                       })
-                    }
+                    }*/}
                  </div>
 
 

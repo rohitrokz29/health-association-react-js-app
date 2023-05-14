@@ -21,8 +21,8 @@ const MemberSchema=new Schema({
     },
     education:{
         type:String
-            },
-    phone:{
+    },
+        phone:{
         type:String,
         require:true
     }
