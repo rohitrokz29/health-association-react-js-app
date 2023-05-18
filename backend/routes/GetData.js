@@ -23,31 +23,42 @@ getRouter.get('/home-data',async (req,res)=>{
         res.status(200).json((JSON.stringify({specialistData,excellenceData})));
     }
     catch{
-        res.status(404).json(JSON.stringify({message:"Not able to fetch"}));
+        res.status(500).json(JSON.stringify({message:"Not able to fetch"}));
     }
 });
 
 
 
 /*
- get request to get data of specialities from database  and send it as json 
+ get request to get data of specialities from database  and send it as json string 
  successfully sent-200 code
  failed send - 404 code
  */
 
 getRouter.get('/speciality-data/:speciality', (req,res)=>{
   SpecialityModel.findOne({"speciality":req.params.speciality})
-  .then(data=>res.status(200).json(JSON.stringify(data)))    
-  .catch(e=>res.status(404).json(JSON.stringify({message:"Not able to fetch"})));
+  .then(data=>res.status(200).json(data))    
+  .catch(e=>res.status(500).json({message:"Not able to fetch"}));
 
 });
 
+/*
+get request to get data of locations page of react app and send response in json string
+*/
 
 getRouter.get('/get-location',async (req,res)=>{
         Centers.
         find().
-        then(data=>res.status(202).json(JSON.stringify(data))).
-        catch(err=>res.status(404).json(JSON.stringify({message:"cannot find",data:err}))); 
+        then(data=>res.status(200).json(JSON.stringify(data))).
+        catch(err=>res.status(500).json(JSON.stringify({message:"cannot find",data:err}))); 
+
+});
+
+getRouter.get('/all-doctors',async (req,res)=>{
+        Specialist.
+        find().
+        then(data=>res.status(200).json(data)).
+        catch(err=>res.status(500).json({message:"cannot find",data:err})); 
 
 });
 

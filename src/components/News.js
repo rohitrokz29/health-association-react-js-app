@@ -20,16 +20,14 @@ const [page, setPage] = useState(1)
 
 const [news, setNews] = useState({});
 useEffect(() => {
-        axios.get(NEWS_API).then((res)=>{
-            setNews({articles:res.data.articles});
-            console.log(res.data.articles);
-        }).catch((err)=>{
-            console.log(err);
-        })
+    const fetchData= async (NEWS_API)=>{
+        const res=await axios.get(NEWS_API);
+        console.log(res);
 
-    return () => {
-        setLoading(false)
-    };
+    setNews(res.data.articles);
+    setLoading(false);
+    }
+    fetchData(NEWS_API);
 }, [])
 
 
@@ -44,17 +42,22 @@ useEffect(() => {
                     </div>
         {loading && <div className="is-flex is-justify-content-center is-align-items-center m-0 p-0" style={{height:'70vh'}}>
             <img className="image" alt="Loading..." src={Loader}  style={{height:"12rem",width:"12rem" ,fontSize:"3rem",}}/>
-            </div>}
-                 <div className=" news-box  is-flex is-justify-content-space-around is-flex-wrap-wrap">
-                     {/* {          
-               !loading && news.articles.map((ele)=>{
-                return(
-
-                        <NewsCard key={ele.url} headline={ele.title} publishedAt={ele.publishedAt} description={ele.description} url={ele.url}   />
-                        )
-                      })
-                    }*/}
+            </div>
+        }
+            
+                {
+                    !loading && 
+              <div className=" news-box  is-flex is-justify-content-space-around is-flex-wrap-wrap">
+                     {   news.map((ele,index)=>{
+                            return(
+                        <NewsCard key={index} image={ele.urlToImage} headline={ele.title} publishedAt={ele.publishedAt} description={ele.description} url={ele.url}   />
+                            )
+                        })
+                    }
                  </div>
+                }
+
+        
 
 
 </section>

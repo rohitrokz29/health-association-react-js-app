@@ -8,7 +8,7 @@ function NewsCard({id,url ,headline, description,publishedAt,image }) {
   <div className="card mx-3 my-3 news-card ">
   <header className="card-header " >
     <p className="card-header-title">
-      {headline?headline.slice(0,50):"...."}...
+      {headline?headline.slice(0,50):"No Data Available"}...
     </p>
     <button className="card-header-icon" >
       
@@ -17,11 +17,9 @@ function NewsCard({id,url ,headline, description,publishedAt,image }) {
    <div className="card-content">
     <div className="content">
     <div className="container ">
-    	<figure className="image is-256x256">
-    		<img src={image} alt="NOT AVAILABLE" className="image" />
-    	</figure>
+    		<img src={image?image:"https://storage.needpix.com/rsynced_images/black-box-background.jpg"}  style={{width:"40rem",height:"10rem"}} />
     </div>
-    <div className="conatiner mx-1 has-text-black   is-size-6" >{description?description.slice(0,150):"..."}...	</div>
+    <div className="conatiner mx-1 has-text-black   is-size-6" >{description?description.slice(0,150):"No Data Available"}...	</div>
 
 			      <br/>
     </div>

@@ -20,8 +20,8 @@ app.use(bodyParser.urlencoded({limit: "50mb", extended: true, parameterLimit:500
 
 const PORT=process.env.PORT||5000 ;
 
-// const MONGO_URI= `mongodb+srv://${process.env.MONGO_DB_USER_NAME}:${process.env.MONGO_DB_USER_PSSWORD}@${process.env.MONGO_DB_CLUSTER}/?retryWrites=true&w=majority`
-const MONGO_URI="mongodb+srv://kharcherohit2908:rohti%40123457%265432@cluster0.8ekb7mk.mongodb.net/?retryWrites=true&w=majority";
+const MONGO_URI= `mongodb+srv://${process.env.MONGO_DB_USER_NAME}:${process.env.MONGO_DB_USER_PASSWORD}@${process.env.MONGO_DB_CLUSTER}/?retryWrites=true&w=majority`
+
 /*
 - Since we are using React.js and express cors helps to make requests for this external backend  server
 - urlencoded is being used to parse the incoming requests
@@ -30,6 +30,7 @@ const MONGO_URI="mongodb+srv://kharcherohit2908:rohti%40123457%265432@cluster0.8
 app.use(cors())
 app.use(express.urlencoded( {extended:false}));
 app.use(express.json());
+
 
 
 /*

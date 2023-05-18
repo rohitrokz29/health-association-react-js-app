@@ -4,6 +4,7 @@ const specialitySchema = new Schema({
   speciality:String,
   description:String,
   imageUrl:String,
+  symptoms:[{type:String}],
   careTips :[{type:String}],
 
   patientsReview:  {title:String,

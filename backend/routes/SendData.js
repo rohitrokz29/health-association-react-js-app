@@ -22,7 +22,7 @@ sendRouter.post('/subscribtion',  (req,res)=>{
                   });
      subscriber.save()
      .then(result=>res.status(200).json(JSON.stringify({message:"Subscribtion Successful",data:result})))
-     .catch(error=>res.status(404).json(JSON.stringify({message:"unsuccessful",data:error})))
+     .catch(error=>res.status(500).json(JSON.stringify({message:"unsuccessful",data:error})))
 
 })
 
@@ -36,8 +36,8 @@ sendRouter.post('/appointment',(req,res)=>{
 
             });
     appointment.save()
-    .then(result=>res.status(202).json(JSON.stringify({message:"success",data:result})))
-    .catch(err=>res.status(402).json(JSON.stringify({message:"unsuccessful",data:err})));
+    .then(result=>res.status(200).json(JSON.stringify({message:"success",data:result})))
+    .catch(err=>res.status(500).json(JSON.stringify({message:"unsuccessful",data:err})));
 })
 
 sendRouter.post('/joinus',(req,res)=>{
@@ -52,8 +52,8 @@ sendRouter.post('/joinus',(req,res)=>{
 
 
 newMember.save().
-then(result=>res.status(202).json(JSON.stringify({data:result}))).
-catch(err=> res.status(404).json(JSON.stringify({data:error})))
+then(result=>res.status(200).json(JSON.stringify({data:result}))).
+catch(err=> res.status(500).json(JSON.stringify({data:error})))
 
 
 })
@@ -65,8 +65,8 @@ sendRouter.post('/donate',(req,res)=>{
     phone:req.body.phone,
     type:req.body.type
   });
-  newHelp.save().then(result=>res.json(result).status(202)).
-  catch(err=>res.json(err).status(404));
+  newHelp.save().then(result=>res.json(result).status(200)).
+  catch(err=>res.json(err).status(500));
 })
 
 

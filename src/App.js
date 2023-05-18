@@ -13,6 +13,8 @@ import News from './components/News';
 import Donate from './components/forms/Donate';
 import GetDoctor from './components/forms/GetDoctor';
 import Reports from './components/forms/Reports';
+import Doctors from './components/Doctors';
+
 
 function App() {
 
@@ -26,7 +28,6 @@ function App() {
  /*
     Logo's and image's used in this pages are taken from google and different websites
   */
-
 
 
     return (
@@ -62,6 +63,7 @@ function App() {
 
           <Route key="medical-reports" exact path="medical-reports" element={<Reports API_URL={API_URL} />} />
 
+          <Route key='doctors' exact path="all-doctors" element={<Doctors API_URL={API_URL} />} />
         </Routes>
       </BrowserRouter>
   );

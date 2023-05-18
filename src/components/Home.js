@@ -130,7 +130,7 @@ const Home = ({setProgress,baseurl,API_URL}) => {
 
                         (!loading) && Specialistdata.filter((ele, idx) => idx < 8).map((ele) => {
                             return (
-                                <Specialist key={ele.name} gender={ele.gender} name={ele.name} qualification={ele.qualification} />
+                                <Specialist key={ele.name} gender={ele.gender} name={ele.name} education={ele.education} />
                             )
                         })}
                 </div>
@@ -141,7 +141,7 @@ const Home = ({setProgress,baseurl,API_URL}) => {
                   */}
 
                 <div className="container mt-4">
-                    <Link to='/' target="_blank" className="box button is-hoverable  is-rounded">
+                    <Link to='/all-doctors'  className="box button is-hoverable  is-rounded">
                         View all
                     </Link>
                 </div>
