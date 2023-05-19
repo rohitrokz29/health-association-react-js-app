@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
 import axios from 'axios';
 
 
@@ -9,7 +9,11 @@ const GetDoctor = ({API_URL}) => {
     const changeData=(e)=>{
         setData({...data,[e.target.name]:e.target.value}); 
     }
-
+useEffect(() => {
+    return () => {
+        document.title="Get Your Doctor";
+    };
+}, [])
 
     const getDoctor= async (e)=>{
         e.preventDefault();
@@ -24,10 +28,10 @@ const GetDoctor = ({API_URL}) => {
         }
         else{
 
-            axios.post(`${API_URL}api/sendData/get-doctor`,JSON.stringify(data)).
-            then(res=>res.json()).
-            then(res=>console.log(res)).
-            catch(err=>document.getElementById("message").innerHTML=err);
+            axios.post(`${API_URL}api/sendData/get-doctor`,JSON.stringify(data))
+            .then(res=>res.json())
+            .then(res=>res.json()).then(res=>document.getElementById("message").innerHTML=res.status===200?"Successfully Submited Form\nDetails Will be sent on your mail":"Submission Failed")
+            .catch(err=>document.getElementById("message").innerHTML=err);
         }
        }
 

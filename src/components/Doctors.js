@@ -8,6 +8,7 @@ const Doctors = ({API_URL}) => {
 const [doctors,setDoctors]=useState("");
 const [loading,setLoading]=useState(true);
 useEffect(()=>{
+	document.title="Doctors- Cureit Health Association";
 	const fetchData =async (API_URL)=>{
 			const res= await axios.get(`${API_URL}api/get-data/all-doctors`);
 			console.log(res);
@@ -15,7 +16,7 @@ useEffect(()=>{
 			setLoading(false);
 	}
 	fetchData(API_URL)
-},[])
+},[API_URL])
 
 	return (
 		<>

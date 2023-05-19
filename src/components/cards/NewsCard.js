@@ -17,7 +17,7 @@ function NewsCard({id,url ,headline, description,publishedAt,image }) {
    <div className="card-content">
     <div className="content">
     <div className="container ">
-    		<img src={image?image:"https://storage.needpix.com/rsynced_images/black-box-background.jpg"}  style={{width:"40rem",height:"10rem"}} />
+    		<img src={image?image:"https://storage.needpix.com/rsynced_images/black-box-background.jpg"} alt="NO"  style={{width:"40rem",height:"10rem"}} />
     </div>
     <div className="conatiner mx-1 has-text-black   is-size-6" >{description?description.slice(0,150):"No Data Available"}...	</div>
 

@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
 import axios from 'axios';
 
 const Reports = ({API_URL}) => {
@@ -8,12 +8,16 @@ const [data, setData] = useState({name:"",patient_id:"",phone:"",email:""});
         setData({...data,[e.target.name]:e.target.value}); 
     }
 
-
+useEffect(() => {
+    return () => {
+        document.title="Get Your Reports";
+    };
+}, [])
     const getReports= async (e)=>{
         e.preventDefault();
         console.log(data);
 
-       if(  data.patient_id =""){
+       if(  data.patient_id ===""){
         document.getElementById("message").innerHTML="Please fill Correct Details";
        }
        else {
@@ -22,10 +26,10 @@ const [data, setData] = useState({name:"",patient_id:"",phone:"",email:""});
         }
         else{
 
-            axios.post(`${API_URL}api/sendData/get-reports`,JSON.stringify(data)).
-            then(res=>res.json()).
-            then(res=>console.log(res)).
-            catch(err=>document.getElementById("message").innerHTML=err);
+            axios.post(`${API_URL}api/sendData/get-reports`,JSON.stringify(data))
+            .then(res=>res.json())
+            .then(res=>console.log(res))
+            .catch(err=>document.getElementById("message").innerHTML=err);
         }
        }
 

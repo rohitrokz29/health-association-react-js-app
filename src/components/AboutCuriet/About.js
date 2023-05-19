@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import about from '../images/about.png';
 
 const About = () => {
@@ -9,6 +9,10 @@ const About = () => {
 
 
   */
+
+    useEffect(() => {
+            document.title="About Us - Curiet Health Association";
+    }, [])
     return (
         <>
             <section style={{

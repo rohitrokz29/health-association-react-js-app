@@ -31,7 +31,7 @@ function App() {
 
 
     return (
-      <BrowserRouter>
+      <BrowserRouter >
         <Navbar NEWS_API={NEWS_API}    />
         <LoadingBar
         height={5}

@@ -1,5 +1,4 @@
-import React,{useState,useEffect,useMemo} from 'react';
-import {Link} from 'react-router-dom';
+import React,{useState,useEffect} from 'react';
 import Location from './cards/Location';
 import Loader from './images/load.gif';
 import axios from "axios";
@@ -16,6 +15,8 @@ const [loading,setLoading]=useState(true);
 const [centers, setCenters] = useState([]);
 
 useEffect( () => {
+            document.title="Centers - Curiet Health Association";
+
         const centerData= async ()=>{
             const result= await axios.get(`${API_URL}api/get-data/get-location`);
            console.log(result.data);
@@ -25,10 +26,11 @@ useEffect( () => {
 
             centerData();
 
-    return () => {     
+    return () => {    
+
             setLoading(false);
     };
-}, [])
+}, [API_URL])
 // const centers=[{location:"Mumbai",place:"Dhule",url:"/posi/all"},{location:"Mumbai",place:"Dhule",url:"/posi/all"},{location:"Mumbai",place:"Dhule",url:"/posi/all"},{location:"Mumbai",place:"Dhule",url:"/posi/all"},{location:"Delhi",place:"NCR",url:"/posi/all"}];
 
   return (

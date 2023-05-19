@@ -1,15 +1,20 @@
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
 import axios from "axios";
 
 const Donate = ({API_URL}) => {
 	const [check, setCheck] = useState(false);
 	const [data, setData] = useState({name:"",phone:"",email:"",type:"null"});
-	
+	useEffect(() => {
+        return () => {
+            document.title="Help The Association";
+        };
+    }, [])
 	const changeData=(e)=>{
         setData({...data,[e.target.name]:e.target.value}); 
     }
     const donate =(e)=>{
     	e.preventDefault();
+
 
     	if(data.name===""  || data.email==="" || data.phone==="" || data.type==="null"){
     			document.getElementById("message").innerHTML="Enter Correct Details";
@@ -24,7 +29,7 @@ const Donate = ({API_URL}) => {
 
 
                     axios.post(`${API_URL}api/sendData/donate`,data)
-                    .then(res=>res.json()).then(res=>console.log(res))
+                    .then(res=>res.json()).then(res=>document.getElementById("message").innerHTML=res.status===200?"Successfully Submited Form":"Submission Failed")
                     .catch(res=>{document.getElementById("message").innerHTML="Error in Submission";})
 
                 }

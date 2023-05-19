@@ -1,4 +1,4 @@
-import React, { useId, useState ,useEffect} from "react";
+import React, {  useState ,useEffect} from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 
@@ -8,7 +8,11 @@ const JoinUs = ({API_URL}) => {
     const [check, setCheck] = useState(false);
     const [new_data, setNew_data] = useState({ name: "", email: "", profession: "", speciality: "", education: "", phone: "", });
         const { id } = useParams();
-
+useEffect(() => {
+    return () => {
+        document.title="Join The Association";
+    };
+}, [])
 
 
 
@@ -44,7 +48,7 @@ const handleFileRead = async (event) => {
 
         e.preventDefault();
 
-        if (new_data.name === "" || new_data.email === "" || new_data.phone === "" || new_data.education === "", new_data.speciality === "") {
+        if (new_data.name === "" || new_data.email === "" || new_data.phone === "" || new_data.education === ""||new_data.speciality === "") {
                 document.querySelector("#message").innerHTML = "Please enter correct details"
             }
         else {
@@ -53,11 +57,11 @@ const handleFileRead = async (event) => {
                 document.querySelector("#message").innerHTML = "Please check in the box "
                 }
             else {
-                axios.post(`${API_URL}api/sendData/joinus`, (new_data)).
-                then(res => console.log(JSON.parse(res.data))).
-                catch(err =>{document.querySelector("#message").innerHTML = err;
-                            console.log(err);});
-                console.log((new_data));
+                axios.post(`${API_URL}api/sendData/joinus`, (new_data))
+                .then(res=>res.json())
+                .then(res=>document.getElementById("message").innerHTML=res.status===200?"Successfully Submited Form Please Cheeck Your Email":"Submission Failed")                
+                .catch(err =>{document.querySelector("#message").innerHTML = err;});
+
 
             }
         }

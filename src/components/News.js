@@ -15,11 +15,11 @@ REMAINING TO ADD INFINITE LOADER
 */
 
 const [loading,setLoading]=useState(true);
-const [page, setPage] = useState(1)
 
 
 const [news, setNews] = useState({});
 useEffect(() => {
+    document.title="Health News- Cureit Health Association";
     const fetchData= async (NEWS_API)=>{
         const res=await axios.get(NEWS_API);
         console.log(res);
@@ -28,7 +28,7 @@ useEffect(() => {
     setLoading(false);
     }
     fetchData(NEWS_API);
-}, [])
+}, [NEWS_API])
 
 
   return (

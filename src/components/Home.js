@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState,useMemo  } from 'react';
+import React, {  useEffect, useState  } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
@@ -40,6 +40,7 @@ const Home = ({setProgress,baseurl,API_URL}) => {
     
 
     useEffect(() => {
+        document.title="Curet Health Association";
         const homeData = async () => {
     const GET_DATA_URL = (`${API_URL}api/get-data/home-data`).toString();
 
@@ -64,7 +65,7 @@ const Home = ({setProgress,baseurl,API_URL}) => {
         
 
         homeData()
-    },[])
+    },[API_URL,setProgress])
 
 
 

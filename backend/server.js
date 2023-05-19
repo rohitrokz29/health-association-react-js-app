@@ -18,9 +18,7 @@ app.use(bodyParser.urlencoded({limit: "50mb", extended: true, parameterLimit:500
   Mongouri represent the uri of MongoDB atlas Database
  */
 
-const PORT=process.env.PORT||5000 ;
 
-const MONGO_URI= `mongodb+srv://${process.env.MONGO_DB_USER_NAME}:${process.env.MONGO_DB_USER_PASSWORD}@${process.env.MONGO_DB_CLUSTER}/?retryWrites=true&w=majority`
 
 /*
 - Since we are using React.js and express cors helps to make requests for this external backend  server
@@ -48,7 +46,11 @@ app.use('/api/sendData',require('./routes/SendData'));
 /*
  Running the server on port=PORT 
  */
-// async (MONGO_URI) => {
+
+ const Connection=()=>{
+
+const PORT=process.env.PORT||3006 ;
+const MONGO_URI= `mongodb+srv://${process.env.MONGO_DB_USER_NAME}:${process.env.MONGO_DB_USER_PASSWORD}@${process.env.MONGO_DB_CLUSTER}/?retryWrites=true&w=majority`
     mongoose.connect(MONGO_URI,{
       dbName: `health-association`,
             useNewUrlParser:true,
@@ -68,9 +70,13 @@ app.use('/api/sendData',require('./routes/SendData'));
         }
     });
 
+    }).catch(err=>{
+        console.log('Rrconnecting....');
+            Connection();
     })
-    // .catch((err)=>{ConnectToMongo(MONGO_URI)});
-// }
+    }
+
+    Connection();
 
 
 

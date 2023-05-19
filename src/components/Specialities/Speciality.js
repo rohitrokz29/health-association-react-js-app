@@ -1,5 +1,4 @@
 import {React , useEffect,useState} from 'react';
-import {useLocation} from 'react-router-dom';
 import {useParams } from 'react-router';
 import axios from 'axios';
 import Loader from '../images/load.gif'
@@ -28,6 +27,7 @@ USE THE BELOW FUNCTION IN NAVBAR COMPONENT AND LOAD IT AND SHOW LOADING BAR WHIL
 */
 
 useEffect(  ()=>{
+  document.title=`${id.toUpperCase()}-Cureit Health Association`;
 
   const FETCH_URL =`${API_URL}api/get-data/speciality-data/${id}`;
  
@@ -41,7 +41,7 @@ useEffect(  ()=>{
     }
     fetchData(API_URL);
    
-},[id])
+},[id,API_URL])
 
 
 

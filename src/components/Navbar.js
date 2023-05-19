@@ -11,7 +11,7 @@ const Navbar = ({NEWS_API}) => {
     <>
 
       {/* Below is the top most nav-bar of page*/}
-      <header className='navbar   ' style={{ backgroundColor: 'transparent' }}  >
+      <header className='navbar   ' style={{ backgroundColor: 'transparent', width:"100vw" }}  >
         <div className=" navbar-brand mx-1 is-centered  ">
           <div className='navbar-item  image is-64x64 '>
             <img src={logo} alt="" />
@@ -34,7 +34,7 @@ const Navbar = ({NEWS_API}) => {
 
       {/* Below is the main navbar that navigates or helps the user to move throught the app
         */}
-      <nav className="navbar is-info main-nav   "  role="navigation" aria-label="main navigation" style={{ position: 'sticky', top: '0' }}>
+      <nav className="navbar is-info main-nav   "  role="navigation" aria-label="main navigation" style={{ position: 'sticky', top: '0' , width:"100vw"}}>
 
   {/*      <div className='navbar-brand mx-1 is-centered'>
           <Link role="button" className="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
@@ -191,7 +191,7 @@ const Navbar = ({NEWS_API}) => {
                   <div className="dropdown-content">
                   
                     <NewsSec NEWS_API={NEWS_API} />
-
+ 
                   </div>
                 </div>
               </div>
@@ -207,12 +207,19 @@ const Navbar = ({NEWS_API}) => {
                 <div className="dropdown-trigger">
                   <span aria-controls='dropdown-menu'>Health Tips</span>
 
+
                 </div>
                 <div className="dropdown-menu  " id='dropdown-menu'>
-                  <div className="dropdown-content ">
+                  <div className="dropdown-content column is-two-third ">
 
-
-                    {/* //Remain to complete this */}
+                    <div className='dropdown-item has-text-weight-medium news-bar'>Limit sugary drinks</div>
+                    <div className='dropdown-item has-text-weight-medium news-bar'>Eat nuts and seeds</div>
+                    <div className='dropdown-item has-text-weight-medium news-bar'>Avoid ultra-processed foods</div>
+                    <div className='dropdown-item has-text-weight-medium news-bar'>Don’t fear coffee</div>
+                    <div className='dropdown-item has-text-weight-medium news-bar'>Eat fatty fish</div>
+                    <div className='dropdown-item has-text-weight-medium news-bar'>Get enough sleep</div>
+                    <div className='dropdown-item has-text-weight-medium news-bar'>Feed your gut bacteria</div>
+                    <div className='dropdown-item has-text-weight-medium news-bar'> Stay hydrated</div>
 
                   </div>
                 </div>

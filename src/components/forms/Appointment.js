@@ -7,9 +7,13 @@ const Appointment = ({API_URL}) => {
     const changeData=(e)=>{
         setData({...data,[e.target.name]:e.target.value}); 
     }
+useEffect(() => {
+    return () => {
+      document.title="Book Appointment Cureit Health Association";  
+    };
+}, [])
 
-
-    const bookAppointment= async (e)=>{
+    const bookAppointment=  (e)=>{
         e.preventDefault();
 
         if(data.name===""||data.phone===""|| data.email===""||data.symptoms==="" || data.income===""){
@@ -20,9 +24,10 @@ const Appointment = ({API_URL}) => {
                 document.querySelector("#message").innerHTML = "Please check in the box";
             }
             else{
-                    let res=await axios.post((`${API_URL}api/sendData/appointment`),(data)).
-                    then(res=>console.log(res)).
-                    catch(err=>document.querySelector("#message").innerHTML = err)
+                     axios.post((`${API_URL}api/sendData/appointment`),(data))
+                    .then(res=>res.json())
+                    .then(res=>document.getElementById("message").innerHTML=res.status===200?"Successfully Submited Form We Will be Contacting You":"Submission Failed")
+                    .catch(err=>document.querySelector("#message").innerHTML = "Booking Failed")
 
             }
         }

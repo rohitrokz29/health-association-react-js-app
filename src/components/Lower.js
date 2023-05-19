@@ -30,13 +30,9 @@ if(data.email===""){
 setMessage({color:"danger",message:"Enter Correct Details"});
 }
 else{
-    axios.post(`${API_URL}api/sendData/subscribtion`,data).
-    then((res)=>{
-        setMessage({color:"success",message:"Successfully Subscribed"});
-    }).
-    catch((err)=>{
-            setMessage({color:"danger",message:"Subscribtion Failed"});
-    });
+    axios.post(`${API_URL}api/sendData/subscribtion`,data)
+    .then((res)=>res.status===200?setMessage({color:"success",message:"Successfully Subscribed"}):setMessage({color:"danger",message:"Subscribtion Failed"}))
+    .catch((err)=>setMessage({color:"danger",message:"Subscribtion Failed"}));
 }
 
   }
@@ -60,10 +56,10 @@ else{
 
                         <form method='post'  className="form" onSubmit={Subscribe}>
                             <label htmlFor="email" className="email" id="email">Email:
-                                <input type="email" value={data.email} onChange={handleChange} name='email' placeholder='Email' className="input" />
+                                <input type="email" id="email" name="email" value={data.email} onChange={handleChange} placeholder='Email' className="input" />
                             </label>
                             <label htmlFor="phone" className="phone">Phone:
-                                <input type="number" placeholder='Mobile Number' value={data.phone} onChange={handleChange} name="phone" className='input is-hoverable' id="phone  " /></label>
+                                <input type="number"  placeholder='Mobile Number' value={data.phone} onChange={handleChange} name="phone" className='input is-hoverable' id="phone" /></label>
                             <p>   By Subscribing you accept to our terms and conditions.
                             </p>
                                 
@@ -71,7 +67,7 @@ else{
                                         {message.message}
                                     </strong>
                                 
-                            <input type="button" type="submit" className='input button has-background-danger has-text-white is-hoverable' value="Subscribe" />
+                            <input type="submit" name="submit" className='input button has-background-danger has-text-white is-hoverable' value="Subscribe" />
                         </form></div>
                     <div className="box has-background-dark has-text-white">
                         <div className="subtitle has-text-warning">About Cureit</div>
