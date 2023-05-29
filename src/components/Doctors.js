@@ -3,20 +3,20 @@ import axios from 'axios';
 import Loader from './images/load.gif';
 import Specialist from './cards/Specialist';
 
-const Doctors = ({API_URL}) => {
+const Doctors = () => {
 
 const [doctors,setDoctors]=useState("");
 const [loading,setLoading]=useState(true);
 useEffect(()=>{
 	document.title="Doctors- Cureit Health Association";
-	const fetchData =async (API_URL)=>{
-			const res= await axios.get(`${API_URL}api/get-data/all-doctors`);
+	const fetchData =async ()=>{
+			const res= await axios.get(`${process.env.REACT_APP_API}api/get-data/all-doctors`);
 			console.log(res);
 			setDoctors(res.data);
 			setLoading(false);
 	}
-	fetchData(API_URL)
-},[API_URL])
+	fetchData()
+},[])
 
 	return (
 		<>

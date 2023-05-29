@@ -71,7 +71,7 @@ const MONGO_URI= `mongodb+srv://${process.env.MONGO_DB_USER_NAME}:${process.env.
     });
 
     }).catch(err=>{
-        console.log('Rrconnecting....');
+        console.log('Reconnecting....');
             Connection();
     })
     }

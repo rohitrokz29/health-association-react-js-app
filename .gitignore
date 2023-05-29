@@ -8,6 +8,7 @@ src/.env
 src/components/.env
 .env
 
+build
 
 
 remainsPart.txt 

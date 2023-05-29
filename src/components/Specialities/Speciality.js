@@ -4,7 +4,7 @@ import axios from 'axios';
 import Loader from '../images/load.gif'
 import Specialist from '../cards/Specialist.js'
 
-const Speciality = ({API_URL})=>{
+const Speciality = ()=>{
 
 /*
 here id is the speciality type and url to fetch data related to the speciality
@@ -29,19 +29,18 @@ USE THE BELOW FUNCTION IN NAVBAR COMPONENT AND LOAD IT AND SHOW LOADING BAR WHIL
 useEffect(  ()=>{
   document.title=`${id.toUpperCase()}-Cureit Health Association`;
 
-  const FETCH_URL =`${API_URL}api/get-data/speciality-data/${id}`;
  
-    const fetchData=async (API_URL)=>{
+    const fetchData=async ()=>{
       setLoading(true)
-      const res = await axios.get(FETCH_URL);
+      const res = await axios.get(`${process.env.REACT_APP_API}api/get-data/speciality-data/${id}`);
       console.log(res.data);
       setData(res.data)
     setLoading(false);
     
     }
-    fetchData(API_URL);
+    fetchData();
    
-},[id,API_URL])
+},[id])
 
 
 

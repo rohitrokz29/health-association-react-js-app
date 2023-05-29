@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import logo from './images/logo.png';
 import NewsSec from './NewsSec';
 
-const Navbar = ({NEWS_API}) => {
+const Navbar = () => {
 
 
 
@@ -190,7 +190,7 @@ const Navbar = ({NEWS_API}) => {
                 <div className="dropdown-menu " id="dropdown-menu">
                   <div className="dropdown-content">
                   
-                    <NewsSec NEWS_API={NEWS_API} />
+                    <NewsSec  />
  
                   </div>
                 </div>

@@ -2,7 +2,7 @@ import React, {  useState ,useEffect} from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 
-const JoinUs = ({API_URL}) => {
+const JoinUs = () => {
         const join_as = ["Specialist", "Nurse", "Therapist", "Physician", "Technologist", "Pharmacist"];
 
     const [check, setCheck] = useState(false);
@@ -57,8 +57,7 @@ const handleFileRead = async (event) => {
                 document.querySelector("#message").innerHTML = "Please check in the box "
                 }
             else {
-                axios.post(`${API_URL}api/sendData/joinus`, (new_data))
-                .then(res=>res.json())
+                axios.post(`${process.env.REACT_APP_API}api/sendData/joinus`, (new_data))
                 .then(res=>document.getElementById("message").innerHTML=res.status===200?"Successfully Submited Form Please Cheeck Your Email":"Submission Failed")                
                 .catch(err =>{document.querySelector("#message").innerHTML = err;});
 

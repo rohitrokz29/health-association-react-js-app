@@ -10,7 +10,7 @@ import ExpertSay from './ExpertSay';
 import Loader from './images/load.gif';
 import Lower from './Lower'
 
-const Home = ({setProgress,baseurl,API_URL}) => {
+const Home = ({setProgress}) => {
 
     /*
     Ecellence state store the data of Association excellency fields and
@@ -42,7 +42,7 @@ const Home = ({setProgress,baseurl,API_URL}) => {
     useEffect(() => {
         document.title="Curet Health Association";
         const homeData = async () => {
-    const GET_DATA_URL = (`${API_URL}api/get-data/home-data`).toString();
+    const GET_DATA_URL = (`${process.env.REACT_APP_API}api/get-data/home-data`).toString();
 
         try {
             setProgress(10);
@@ -59,13 +59,12 @@ const Home = ({setProgress,baseurl,API_URL}) => {
         catch (err) {
             setProgress(0);
             console.log(err);
-            // homeData(GET_DATA_URL);
         }
     }
         
 
         homeData()
-    },[API_URL,setProgress])
+    },[setProgress])
 
 
 
@@ -163,7 +162,7 @@ const Home = ({setProgress,baseurl,API_URL}) => {
             <Lower/> component is the bottom part of home page showning
             all properties of association and projects in shorts.
             */}
-            <Lower API_URL={API_URL} />
+            <Lower  />
 
         </>
     )

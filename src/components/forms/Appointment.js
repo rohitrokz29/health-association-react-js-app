@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from "axios";
-const Appointment = ({API_URL}) => {
+const Appointment = () => {
 
     const [data, setData] = useState({name:"",phone:"",email:"",symptoms:"",income:""});
     const [check, setCheck] = useState(false)
@@ -24,8 +24,7 @@ useEffect(() => {
                 document.querySelector("#message").innerHTML = "Please check in the box";
             }
             else{
-                     axios.post((`${API_URL}api/sendData/appointment`),(data))
-                    .then(res=>res.json())
+                     axios.post((`${process.env.REACT_APP_API}api/sendData/appointment`),(data))
                     .then(res=>document.getElementById("message").innerHTML=res.status===200?"Successfully Submited Form We Will be Contacting You":"Submission Failed")
                     .catch(err=>document.querySelector("#message").innerHTML = "Booking Failed")
 

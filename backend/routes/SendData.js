@@ -4,6 +4,7 @@ const Subscribtions=require('../models/Subscribtions');
 const Appointment=require('../models/Appointment') ;
 const Members =require('../models/Member');
 const Help=require('../models/Help');
+const Reports = require('../models/Reports');
 /*
  Declaring below thr express router for post requests to put data into database named "sendRouter"
  */
@@ -26,7 +27,8 @@ sendRouter.post('/subscribtion',  (req,res)=>{
 
 })
 
-sendRouter.post('/appointment',(req,res)=>{
+const appointment=(req,res)=>{
+  
     const appointment=new Appointment({  
                 name:req.body.name,
                 email:req.body.email,
@@ -38,8 +40,20 @@ sendRouter.post('/appointment',(req,res)=>{
     appointment.save()
   .then(result=>res.status(200).json({message:"Success"}))
     .catch(err=>res.status(500).json({message:"Failed"}));
-})
+}
 
+sendRouter.post('/appointment',appointment)
+sendRouter.post('/get-doctor',appointment);
+sendRouter.post('/get-reports',(req,res)=>{
+  const report=new Reports({
+    name:req.body.name,
+    email:req.body.email,
+    phone:req.body.phone,
+    patient_id:req.body.patient_id,  });
+    report.save()
+    .then(result=>res.status(200).json({message:"Success"}))
+      .catch(err=>res.status(500).json({message:"Failed"}));
+})
 sendRouter.post('/joinus',(req,res)=>{
   const newMember=new Members({
       name:req.body.name,

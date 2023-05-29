@@ -20,11 +20,6 @@ function App() {
 
   const [progress,setProgress]= useState(0);
 
-  // baseurl is the base path for the api
-
-  const API_URL=process.env.REACT_APP_API ;
-
-  const NEWS_API=process.env.REACT_APP_NEWS_API;
  /*
     Logo's and image's used in this pages are taken from google and different websites
   */
@@ -32,7 +27,7 @@ function App() {
 
     return (
       <BrowserRouter >
-        <Navbar NEWS_API={NEWS_API}    />
+        <Navbar     />
         <LoadingBar
         height={5}
         color='red'
@@ -40,30 +35,30 @@ function App() {
         />
 
         <Routes>
-          <Route key="home" exact path="/" element={<Home setProgress={setProgress} API_URL={API_URL}/>} />
+          <Route key="home" exact path="/" element={<Home setProgress={setProgress} />} />
 
           <Route key="about" exact path="/about" element={<About />} />
 
-          <Route key="appointment" exact path="/book-an-appointment" element={<Appointment API_URL={API_URL}/>}  />
+          <Route key="appointment" exact path="/book-an-appointment" element={<Appointment />}  />
 
-          <Route key='centers' exact path="/posi/:id"  element={<Center API_URL={API_URL}/>}/>
+          <Route key='centers' exact path="/posi/:id"  element={<Center />}/>
 
 
-          <Route key="speciality" path="/speciality/:id" element={<Speciality API_URL={API_URL} />}/>
+          <Route key="speciality" path="/speciality/:id" element={<Speciality  />}/>
 
-          <Route key="join" path="/join/:id" element={<JoinUs API_URL={API_URL}/>} />
+          <Route key="join" path="/join/:id" element={<JoinUs />} />
 
-          <Route key="news" exact path="/news" element={<News NEWS_API={NEWS_API}/>} />
+          <Route key="news" exact path="/news" element={<News />} />
         
-          <Route key="donate" exact path="/donate" element={<Donate API_URL={API_URL}/>} />
+          <Route key="donate" exact path="/donate" element={<Donate />} />
 
-          <Route key="get-doctor" exact path="get-doctor" element={<GetDoctor API_URL={API_URL}/>} />
+          <Route key="get-doctor" exact path="get-doctor" element={<GetDoctor />} />
 
-          <Route key="health-checkup" exact path="health-checkup" element={<Appointment API_URL={API_URL} />} />
+          <Route key="health-checkup" exact path="health-checkup" element={<Appointment  />} />
 
-          <Route key="medical-reports" exact path="medical-reports" element={<Reports API_URL={API_URL} />} />
+          <Route key="medical-reports" exact path="medical-reports" element={<Reports  />} />
 
-          <Route key='doctors' exact path="all-doctors" element={<Doctors API_URL={API_URL} />} />
+          <Route key='doctors' exact path="all-doctors" element={<Doctors  />} />
         </Routes>
       </BrowserRouter>
   );

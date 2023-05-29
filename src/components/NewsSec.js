@@ -3,39 +3,39 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 
-const NewsSec = ({NEWS_API}) => {
+const NewsSec = () => {
 
-/*
-  News state store the latest news fetched by using the NEWS API which is stored
-  in the url=props.NEWS_URL passed from App->Navbar->NewsSec
-*/
+    /*
+      News state store the latest news fetched by using the NEWS API which is stored
+      in the url=props.NEWS_URL passed from App->Navbar->NewsSec
+    */
 
-    const [News, setNews] = useState({ articles:[], loading: true });
+    const [News, setNews] = useState({ articles: [], loading: true });
 
 
 
-        /*
-        fetchData function is used to fetch the json file from news api and
-         store the data in News state
-        */
+    /*
+    fetchData function is used to fetch the json file from news api and
+     store the data in News state
+    */
 
     useEffect(() => {
 
-          const fetchData = async () => {
-              
-              const data = await axios.get(`${NEWS_API}&pageSize=6`);
-              setNews({ articles: data.data.articles, loading: false });
+        const fetchData = async () => {
 
-          }
+            const data = await axios.get(`${process.env.REACT_APP_NEWS_API}&pageSize=6`);
+            setNews({ articles: data.data.articles, loading: false });
+
+        }
         fetchData();
-    }, [NEWS_API])
+    }, [])
 
 
 
     return (
         <>
 
-       {/*
+            {/*
         This is the button which shows the loading symbol when the
         news in getting fetched through api
         */}
@@ -60,8 +60,8 @@ const NewsSec = ({NEWS_API}) => {
             button to see more news
             */}
             <div className="dropdown-item is-centered is-flex is-justify-content-center">
-            <Link to="/news">
-                <div className="button is-rounded is-centered  has-background-grey-lighter  ">See More</div>
+                <Link to="/news">
+                    <div className="button is-rounded is-centered  has-background-grey-lighter  ">See More</div>
                 </Link>
             </div>
         </>

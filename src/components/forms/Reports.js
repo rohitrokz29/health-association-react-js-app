@@ -1,7 +1,7 @@
 import React,{useState,useEffect} from 'react';
 import axios from 'axios';
 
-const Reports = ({API_URL}) => {
+const Reports = () => {
 const [data, setData] = useState({name:"",patient_id:"",phone:"",email:""});
     const [check, setCheck] = useState(false)
     const changeData=(e)=>{
@@ -26,9 +26,8 @@ useEffect(() => {
         }
         else{
 
-            axios.post(`${API_URL}api/sendData/get-reports`,JSON.stringify(data))
-            .then(res=>res.json())
-            .then(res=>console.log(res))
+            axios.post(`${process.env.REACT_APP_API}api/sendData/get-reports`,JSON.stringify(data))
+            .then(res=>document.getElementById("message").innerHTML="We will be contacting You"            )
             .catch(err=>document.getElementById("message").innerHTML=err);
         }
        }

@@ -2,7 +2,7 @@ import React,{useState,useEffect} from 'react';
 import axios from 'axios';
 
 
-const GetDoctor = ({API_URL}) => {
+const GetDoctor = () => {
 
  const [data, setData] = useState({name:"",doctor_name:"",speciality:"",phone:"",email:"",symptoms:"",patient_type:""});
     const [check, setCheck] = useState(false)
@@ -28,9 +28,8 @@ useEffect(() => {
         }
         else{
 
-            axios.post(`${API_URL}api/sendData/get-doctor`,JSON.stringify(data))
-            .then(res=>res.json())
-            .then(res=>res.json()).then(res=>document.getElementById("message").innerHTML=res.status===200?"Successfully Submited Form\nDetails Will be sent on your mail":"Submission Failed")
+            axios.post(`${process.env.REACT_APP_API}api/sendData/get-doctor`,JSON.stringify(data))
+            .then(res=>document.getElementById("message").innerHTML=res.status===200?"Successfully Submited Form\nDetails Will be sent on your mail":"Submission Failed")
             .catch(err=>document.getElementById("message").innerHTML=err);
         }
        }

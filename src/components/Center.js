@@ -3,7 +3,7 @@ import Location from './cards/Location';
 import Loader from './images/load.gif';
 import axios from "axios";
 
-const Center =({API_URL})=>{
+const Center =()=>{
     
     /*
     -- variable loading  is being used to have a look wheather data is fetched or not from axios get request which is set true                     for default and set to false when data is fetched
@@ -18,7 +18,7 @@ useEffect( () => {
             document.title="Centers - Curiet Health Association";
 
         const centerData= async ()=>{
-            const result= await axios.get(`${API_URL}api/get-data/get-location`);
+            const result= await axios.get(`${process.env.REACT_APP_API}api/get-data/get-location`);
            console.log(result.data);
 
             setCenters(JSON.parse(result.data));
@@ -30,7 +30,7 @@ useEffect( () => {
 
             setLoading(false);
     };
-}, [API_URL])
+}, [setLoading,setCenters])
 // const centers=[{location:"Mumbai",place:"Dhule",url:"/posi/all"},{location:"Mumbai",place:"Dhule",url:"/posi/all"},{location:"Mumbai",place:"Dhule",url:"/posi/all"},{location:"Mumbai",place:"Dhule",url:"/posi/all"},{location:"Delhi",place:"NCR",url:"/posi/all"}];
 
   return (

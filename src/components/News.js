@@ -2,7 +2,7 @@ import React,{useState,useEffect} from 'react';
 import Loader from './images/load.gif';
 import NewsCard from "./cards/NewsCard.js";
 import axios from 'axios'
-const News =({NEWS_API})=>{
+const News =()=>{
     
     /*
     -- variable loading  is being used to have a look wheather data is fetched or not from axios get request which is set true                     for default and set to false when data is fetched
@@ -20,15 +20,15 @@ const [loading,setLoading]=useState(true);
 const [news, setNews] = useState({});
 useEffect(() => {
     document.title="Health News- Cureit Health Association";
-    const fetchData= async (NEWS_API)=>{
-        const res=await axios.get(NEWS_API);
+    const fetchData= async ()=>{
+        const res=await axios.get(process.env.REACT_APP_NEWS_API);
         console.log(res);
 
     setNews(res.data.articles);
     setLoading(false);
     }
-    fetchData(NEWS_API);
-}, [NEWS_API])
+    fetchData();
+}, [])
 
 
   return (

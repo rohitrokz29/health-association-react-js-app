@@ -6,7 +6,7 @@ import axios from 'axios';
 
 
 
-const Lower = ({API_URL}) => {
+const Lower = () => {
 
     /*
     email and password are the states for the subscrib for in lowr columns
@@ -30,9 +30,13 @@ if(data.email===""){
 setMessage({color:"danger",message:"Enter Correct Details"});
 }
 else{
-    axios.post(`${API_URL}api/sendData/subscribtion`,data)
+    axios.post(`${process.env.REACT_APP_API}api/sendData/subscribtion`,data)
     .then((res)=>res.status===200?setMessage({color:"success",message:"Successfully Subscribed"}):setMessage({color:"danger",message:"Subscribtion Failed"}))
     .catch((err)=>setMessage({color:"danger",message:"Subscribtion Failed"}));
+    setData({phone:"",email:""});
+    setTimeout(()=>{
+        setMessage({...message,message:""})
+    },3000);
 }
 
   }
